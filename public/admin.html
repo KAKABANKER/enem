@@ -39,7 +39,6 @@
   button { font-family: inherit; cursor: pointer; }
   svg { display: block; }
 
-  /* LOGIN */
   #login-view {
     min-height: 100vh; display: flex; align-items: center; justify-content: center;
     padding: 24px;
@@ -81,7 +80,6 @@
   }
   .error-msg.show { display: block; }
 
-  /* PAINEL */
   #panel-view { display: none; }
   #panel-view.show { display: block; }
 
@@ -103,7 +101,6 @@
 
   .container { max-width: 1280px; margin: 0 auto; padding: 24px; }
 
-  /* TABS */
   .tabs { display: flex; gap: 4px; margin-bottom: 24px; border-bottom: 1px solid var(--line); overflow-x: auto; }
   .tab {
     padding: 12px 18px; font-size: 14px; font-weight: 600; color: var(--ink-soft);
@@ -122,7 +119,6 @@
   .tab-content { display: none; }
   .tab-content.active { display: block; }
 
-  /* STATS */
   .stats {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
     gap: 14px; margin-bottom: 20px;
@@ -142,7 +138,6 @@
   .stat .val.yellow { color: var(--yellow); }
   .stat .hint { font-size: 12px; color: var(--ink-mute); margin-top: 4px; }
 
-  /* GRÁFICO */
   .chart-card {
     background: var(--surface); border: 1px solid var(--line);
     border-radius: 12px; padding: 22px 24px; margin-bottom: 20px;
@@ -162,7 +157,6 @@
   .chart-bars rect { transition: all 0.2s ease; }
   .chart-bars rect:hover { opacity: 0.8; }
 
-  /* FILTROS */
   .filters { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
   .filters input, .filters select {
     font-family: inherit; font-size: 13px; padding: 10px 12px;
@@ -171,7 +165,6 @@
   .filters input { flex: 1; min-width: 200px; }
   .filters input:focus, .filters select:focus { outline: none; border-color: var(--ink); }
 
-  /* TABELA */
   .table-wrap { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
   table { width: 100%; border-collapse: collapse; }
   th, td {
@@ -220,7 +213,6 @@
 
   .empty { padding: 48px 24px; text-align: center; color: var(--ink-mute); font-size: 14px; }
 
-  /* MODAL */
   .modal-overlay {
     position: fixed; inset: 0; background: rgba(0,0,0,0.5);
     display: none; align-items: center; justify-content: center;
@@ -247,7 +239,6 @@
   .modal .modal-actions { display: flex; gap: 8px; flex-wrap: wrap; }
   .modal .modal-actions .btn { flex: 1; min-width: 140px; }
 
-  /* TOAST */
   .toast {
     position: fixed; bottom: 24px; left: 50%;
     transform: translateX(-50%) translateY(120%);
@@ -353,7 +344,6 @@
       <button class="tab" data-tab="settings">Configurações</button>
     </div>
 
-    <!-- PEDIDOS -->
     <div class="tab-content active" id="tab-orders">
       <div class="filters">
         <input type="text" id="orders-search" placeholder="Buscar por nome, e-mail, telefone ou ID...">
@@ -382,7 +372,6 @@
       </div>
     </div>
 
-    <!-- CLIENTES PAGOS -->
     <div class="tab-content" id="tab-clients">
       <div class="filters">
         <input type="text" id="clients-search" placeholder="Buscar cliente pago...">
@@ -404,7 +393,6 @@
       </div>
     </div>
 
-    <!-- LEADS -->
     <div class="tab-content" id="tab-leads">
       <div class="filters">
         <input type="text" id="leads-search" placeholder="Buscar por nome, telefone ou e-mail...">
@@ -433,7 +421,6 @@
       </div>
     </div>
 
-    <!-- CONFIGURAÇÕES -->
     <div class="tab-content" id="tab-settings">
       <div style="max-width: 460px;">
         <div class="chart-card">
@@ -461,7 +448,6 @@
   </div>
 </div>
 
-<!-- MODAL -->
 <div class="modal-overlay" id="deliver-modal">
   <div class="modal">
     <h2>Link de entrega pronto</h2>
@@ -481,9 +467,6 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// ============================================================
-// CONFIG
-// ============================================================
 const TOKEN_KEY = 'enem_admin_token';
 
 const PRODUCTS = {
@@ -491,9 +474,6 @@ const PRODUCTS = {
   checklist: { name: 'Checklist Redação Nota 1000' }
 };
 
-// ============================================================
-// HELPERS
-// ============================================================
 function $(id) { return document.getElementById(id); }
 function formatBRL(n) { return 'R$ ' + Number(n || 0).toFixed(2).replace('.', ','); }
 function formatDate(str) {
@@ -535,9 +515,6 @@ function escapeHtml(s) {
   }[c]));
 }
 
-// ============================================================
-// LOGIN
-// ============================================================
 $('login-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const btn = $('login-btn');
@@ -606,9 +583,6 @@ function showPanel(user) {
   loadLeads();
 }
 
-// ============================================================
-// STATS
-// ============================================================
 async function loadStats() {
   try {
     const res = await api('/api/admin/stats');
@@ -623,31 +597,25 @@ async function loadStats() {
   } catch {}
 }
 
-// ============================================================
-// GRÁFICO
-// ============================================================
 async function loadChart() {
   try {
     const res = await api('/api/admin/chart');
-    const days = res.days || [];
-    renderChart(days);
+    renderChart(res.days || []);
   } catch {
     $('chart-wrap').innerHTML = '<div class="empty">Erro ao carregar gráfico</div>';
   }
 }
 
 function renderChart(days) {
-  const W = 720;
-  const H = 200;
+  const W = 720, H = 200;
   const PAD = { top: 20, right: 20, bottom: 36, left: 20 };
   const innerW = W - PAD.left - PAD.right;
   const innerH = H - PAD.top - PAD.bottom;
-
   const max = Math.max(...days.map(d => d.total), 1);
   const step = innerW / days.length;
   const barW = Math.min(step * 0.55, 54);
-
   const total = days.reduce((s, d) => s + d.total, 0);
+
   $('chart-total').textContent = formatBRL(total);
   $('chart-total-sub').textContent = 'Total: ' + formatBRL(total);
 
@@ -656,32 +624,16 @@ function renderChart(days) {
     const barH = max > 0 ? (d.total / max) * innerH : 0;
     const y = PAD.top + innerH - barH;
     const isToday = i === days.length - 1;
-
     return `
       <g class="chart-bar-group">
-        <rect
-          x="${x}" y="${y}" width="${barW}" height="${Math.max(barH, 2)}"
-          rx="4" ry="4"
-          fill="${isToday ? '#16A34A' : '#18181B'}"
-          opacity="${isToday ? 1 : 0.85}">
+        <rect x="${x}" y="${y}" width="${barW}" height="${Math.max(barH, 2)}" rx="4" ry="4"
+          fill="${isToday ? '#16A34A' : '#18181B'}" opacity="${isToday ? 1 : 0.85}">
           <title>${d.label}: ${formatBRL(d.total)} (${d.pedidos} pedido${d.pedidos !== 1 ? 's' : ''})</title>
         </rect>
-        <text
-          x="${x + barW / 2}" y="${y - 6}"
-          text-anchor="middle"
-          font-size="11"
-          font-weight="700"
-          fill="#18181B"
-          font-family="Inter,sans-serif">
+        <text x="${x + barW / 2}" y="${y - 6}" text-anchor="middle" font-size="11" font-weight="700" fill="#18181B" font-family="Inter,sans-serif">
           ${d.total > 0 ? formatBRL(d.total).replace('R$ ', '') : ''}
         </text>
-        <text
-          x="${x + barW / 2}" y="${H - 14}"
-          text-anchor="middle"
-          font-size="11"
-          font-weight="600"
-          fill="#A1A1AA"
-          font-family="Inter,sans-serif">
+        <text x="${x + barW / 2}" y="${H - 14}" text-anchor="middle" font-size="11" font-weight="600" fill="#A1A1AA" font-family="Inter,sans-serif">
           ${d.label}
         </text>
       </g>
@@ -690,22 +642,17 @@ function renderChart(days) {
 
   const gridLines = [0.25, 0.5, 0.75, 1].map(p => {
     const y = PAD.top + innerH - innerH * p;
-    return `<line x1="${PAD.left}" y1="${y}" x2="${W - PAD.right}" y2="${y}"
-      stroke="#E7E5E4" stroke-width="1" stroke-dasharray="4 4" />`;
+    return `<line x1="${PAD.left}" y1="${y}" x2="${W - PAD.right}" y2="${y}" stroke="#E7E5E4" stroke-width="1" stroke-dasharray="4 4" />`;
   }).join('');
 
-  const svg = `
+  $('chart-wrap').innerHTML = `
     <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" class="chart-svg">
       ${gridLines}
       <g class="chart-bars">${bars}</g>
     </svg>
   `;
-  $('chart-wrap').innerHTML = svg;
 }
 
-// ============================================================
-// PEDIDOS
-// ============================================================
 let allOrders = [];
 
 async function loadOrders() {
@@ -754,7 +701,6 @@ function renderOrders() {
     const itemsLabel = items.length
       ? items.map(i => PRODUCTS[i.id]?.name || i.name).join(' + ')
       : 'Guia 30 Temas';
-
     const statusUpper = String(o.status || '').toUpperCase();
     let badge = `<span class="badge pending">Pendente</span>`;
     if (o.delivered_at) badge = `<span class="badge delivered">Entregue</span>`;
@@ -767,14 +713,8 @@ function renderOrders() {
 
     return `
       <tr>
-        <td>
-          <span class="name">${escapeHtml(o.name || '—')}</span>
-          <span class="muted">${escapeHtml(o.document || '—')}</span>
-        </td>
-        <td>
-          <span>${maskPhone(o.phone)}</span>
-          <span class="muted">${escapeHtml(o.email || '—')}</span>
-        </td>
+        <td><span class="name">${escapeHtml(o.name || '—')}</span><span class="muted">${escapeHtml(o.document || '—')}</span></td>
+        <td><span>${maskPhone(o.phone)}</span><span class="muted">${escapeHtml(o.email || '—')}</span></td>
         <td style="max-width:220px;font-size:12px;">${escapeHtml(itemsLabel)}</td>
         <td><span class="amount">${formatBRL(o.amount)}</span></td>
         <td>${badge}</td>
@@ -796,9 +736,6 @@ $('orders-search').addEventListener('input', renderOrders);
 $('orders-status').addEventListener('change', renderOrders);
 $('orders-refresh').addEventListener('click', () => { loadOrders(); loadStats(); loadChart(); toast('Atualizado'); });
 
-// ============================================================
-// CLIENTES PAGOS
-// ============================================================
 function renderClients() {
   const search = $('clients-search').value.trim().toLowerCase();
   const tbody = $('clients-tbody');
@@ -849,25 +786,17 @@ function renderClients() {
 $('clients-search').addEventListener('input', renderClients);
 $('clients-refresh').addEventListener('click', () => { loadOrders(); toast('Atualizado'); });
 
-// ============================================================
-// MARCAR COMO PAGO
-// ============================================================
 async function markPaid(id) {
   if (!confirm('Marcar esse pedido como PAGO manualmente?')) return;
   try {
     await api('/api/admin/orders/' + id + '/mark-paid', { method: 'PUT' });
     toast('Pedido marcado como pago', 'success');
-    loadOrders();
-    loadStats();
-    loadChart();
+    loadOrders(); loadStats(); loadChart();
   } catch (err) {
     toast(err.message || 'Erro', 'error');
   }
 }
 
-// ============================================================
-// ENTREGA
-// ============================================================
 async function deliverOrder(id) {
   try {
     const res = await api('/api/admin/orders/' + id + '/deliver', { method: 'POST' });
@@ -877,23 +806,25 @@ async function deliverOrder(id) {
     const primeiroNome = (name || '').split(' ')[0] || 'tudo bem';
     const listaItens = (items && items.length)
       ? items.map(i => '• ' + (PRODUCTS[i.id]?.name || i.name)).join('\n')
-      : '• Guia 30 Temas de Redação';
+      : '• Guia 30 Temas de Redação ENEM';
     const expira = expiraEm ? new Date(expiraEm).toLocaleDateString('pt-BR') : '';
 
     const mensagem =
-`Oi, ${primeiroNome}! Tudo bem?
+`Oi, ${primeiroNome}! Tudo bem? 🎉
 
-Aqui é do Caderno ENEM. Seu material já está liberado:
+Sua compra foi finalizada com sucesso!
+
+Aqui está o seu material:
 
 ${listaItens}
 
-Baixe por aqui:
+👇 Baixe agora pelo link abaixo:
 ${link}
 ${expira ? `\nO link fica disponível até ${expira}.` : ''}
 
 Qualquer dúvida, é só responder essa mensagem.
 
-Bons estudos!`;
+Bons estudos! 📚`;
 
     $('deliver-link').textContent = link;
     $('deliver-message').textContent = mensagem;
@@ -904,8 +835,7 @@ Bons estudos!`;
     const waNumber = (phone || '').replace(/\D/g, '');
     $('deliver-whats').href = 'https://wa.me/55' + waNumber + '?text=' + encodeURIComponent(mensagem);
     $('deliver-modal').classList.add('show');
-    loadOrders();
-    loadStats();
+    loadOrders(); loadStats(); loadChart();
   } catch (err) {
     toast('Erro ao gerar link: ' + err.message, 'error');
   }
@@ -919,21 +849,14 @@ $('deliver-modal').addEventListener('click', (e) => {
 async function cancelOrder(id) {
   if (!confirm('Marcar esse pedido como cancelado?')) return;
   try {
-    await api('/api/admin/orders/' + id, {
-      method: 'PUT',
-      body: JSON.stringify({ status: 'CANCELLED' })
-    });
+    await api('/api/admin/orders/' + id, { method: 'PUT', body: JSON.stringify({ status: 'CANCELLED' }) });
     toast('Pedido cancelado', 'success');
-    loadOrders();
-    loadStats();
+    loadOrders(); loadStats();
   } catch {
     toast('Erro ao cancelar', 'error');
   }
 }
 
-// ============================================================
-// LEADS
-// ============================================================
 let allLeads = [];
 
 async function loadLeads() {
@@ -971,8 +894,17 @@ function renderLeads() {
     const statusLower = String(l.status || 'NEW').toLowerCase();
     const labels = { new: 'Novo', contacted: 'Contatado', converted: 'Convertido', lost: 'Perdido' };
     const badge = `<span class="badge ${statusLower}">${labels[statusLower] || 'Novo'}</span>`;
+
+    const mensagem = `Oi, ${(l.name || '').split(' ')[0]}! Tudo bem?
+
+Vi que você começou a comprar o Guia 30 Temas de Redação ENEM mas não finalizou o pagamento.
+
+Ainda quer garantir o seu? Posso te ajudar com qualquer dúvida. 😊
+
+É só responder essa mensagem que a gente resolve rapidinho.`;
+
     const waLink = 'https://wa.me/55' + (l.phone || '').replace(/\D/g, '') +
-      '?text=' + encodeURIComponent(`Oi, ${(l.name || '').split(' ')[0]}! Vi que você começou a comprar o Guia 30 Temas de Redação ENEM mas não finalizou. Ainda quer garantir? Posso te ajudar com qualquer dúvida.`);
+      '?text=' + encodeURIComponent(mensagem);
 
     return `
       <tr>
@@ -1020,9 +952,6 @@ $('leads-search').addEventListener('input', renderLeads);
 $('leads-status').addEventListener('change', renderLeads);
 $('leads-refresh').addEventListener('click', () => { loadLeads(); toast('Atualizado'); });
 
-// ============================================================
-// TROCAR SENHA
-// ============================================================
 $('change-pwd-btn').addEventListener('click', async () => {
   const atual = $('senha-atual').value;
   const nova = $('senha-nova').value;
@@ -1046,9 +975,6 @@ $('change-pwd-btn').addEventListener('click', async () => {
   }
 });
 
-// ============================================================
-// TABS
-// ============================================================
 document.querySelectorAll('.tab').forEach(tab => {
   tab.addEventListener('click', () => {
     const target = tab.dataset.tab;
@@ -1059,9 +985,6 @@ document.querySelectorAll('.tab').forEach(tab => {
   });
 });
 
-// ============================================================
-// EXPORTAR CSV
-// ============================================================
 function toCSV(rows, cols) {
   const esc = v => `"${String(v ?? '').replace(/"/g, '""')}"`;
   const header = cols.map(c => esc(c.label)).join(',');
@@ -1115,21 +1038,12 @@ $('leads-export').addEventListener('click', () => {
   ]));
 });
 
-// ============================================================
-// AUTO-REFRESH
-// ============================================================
 setInterval(() => {
   if ($('panel-view').classList.contains('show')) {
-    loadStats();
-    loadChart();
-    loadOrders();
-    loadLeads();
+    loadStats(); loadChart(); loadOrders(); loadLeads();
   }
 }, 30000);
 
-// ============================================================
-// BOOT
-// ============================================================
 checkAuth();
 </script>
 
