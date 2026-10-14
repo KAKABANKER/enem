@@ -2,8 +2,8 @@
 // PRODUTOS E CUPONS
 // ============================================================
 const PRODUCTS = {
-  guia: { id: 'guia', name: 'Guia 30 Temas de Redação', price: 3.49 },
-  checklist: { id: 'checklist', name: 'Checklist Redação Nota 1000', price: 9.90 }
+  guia: { id: 'guia', name: 'Método ENEM: Guia Completo de Redação', price: 3.49 },
+  checklist: { id: 'checklist', name: 'Caderno de Treino ENEM', price: 9.90 }
 };
 
 const COUPONS = {
