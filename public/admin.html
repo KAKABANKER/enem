@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Caderno ENEM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF9;
+    --surface: #FFFFFF;
+    --surface-soft: #F5F5F4;
+    --ink: #18181B;
+    --ink-soft: #52525B;
+    --ink-mute: #A1A1AA;
+    --line: #E7E5E4;
+    --line-soft: #F0EFEE;
+    --green: #16A34A;
+    --green-dark: #15803D;
+    --green-soft: #F0FDF4;
+    --red: #DC2626;
+    --red-soft: #FEF2F2;
+    --yellow: #F59E0B;
+    --yellow-soft: #FEF3C7;
+    --blue: #2563EB;
+    --blue-soft: #DBEAFE;
+    --purple: #7C3AED;
+    --whats: #25D366;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  button { font-family: inherit; cursor: pointer; }
+  svg { display: block; }
+
+  /* ===== LOGIN ===== */
+  #login-view {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .login-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 36px 28px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 12px 40px rgba(0,0,0,0.04);
+  }
+  .login-card .brand {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    margin-bottom: 28px;
+  }
+  .login-card h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+  }
+  .login-card p {
+    color: var(--ink-soft);
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+  .field { margin-bottom: 14px; }
+  .field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .field input {
+    width: 100%;
+    font-family: inherit;
+    font-size: 15px;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #FFF;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .field input:focus {
+    outline: none;
+    border-color: var(--ink);
+    box-shadow: 0 0 0 3px rgba(24,24,27,0.08);
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--ink);
+    color: #FFF;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background 0.15s;
+  }
+  .btn:hover { background: #000; }
+  .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+  .btn.green { background: var(--green); }
+  .btn.green:hover { background: var(--green-dark); }
+  .btn.whats {
+    background: var(--whats);
+  }
+  .btn.whats:hover { background: #1FAD52; }
+  .btn.ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--line);
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .btn.ghost:hover { background: var(--bg); }
+  .error-msg {
+    background: var(--red-soft);
+    border: 1px solid #FECACA;
+    color: #991B1B;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    display: none;
+  }
+  .error-msg.show { display: block; }
+
+  /* ===== PAINEL ===== */
+  #panel-view { display: none; }
+  #panel-view.show { display: block; }
+
+  .topbar {
+    background: var(--ink);
+    color: #FFF;
+    padding: 14px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .topbar .brand {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .topbar .brand .dot {
+    width: 8px; height: 8px;
+    background: var(--green);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(22,163,74,0.6);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  .topbar .user {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 13px;
+  }
+  .topbar .user .name { opacity: 0.7; }
+  .topbar .logout {
+    background: none;
+    border: none;
+    color: #FFF;
+    font-size: 12px;
+    text-decoration: underline;
+    opacity: 0.7;
+    padding: 0;
+  }
+  .topbar .logout:hover { opacity: 1; }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+    overflow-x: auto;
+  }
+  .tab {
+    padding: 12px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    cursor: pointer;
+    border: none;
+    background: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tab.active { color: var(--ink); border-bottom-color: var(--ink); }
+  .tab:hover:not(.active) { color: var(--ink); }
+  .tab .count {
+    background: var(--line);
+    color: var(--ink-soft);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 1px 7px;
+    border-radius: 100px;
+  }
+  .tab.active .count { background: var(--ink); color: #FFF; }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* STATS */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat .lbl {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 8px;
+  }
+  .stat .val {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
+  .stat .val.green { color: var(--green); }
+  .stat .val.red { color: var(--red); }
+  .stat .val.blue { color: var(--blue); }
+  .stat .val.purple { color: var(--purple); }
+  .stat .val.yellow { color: var(--yellow); }
+  .stat .hint {
+    font-size: 12px;
+    color: var(--ink-mute);
+    margin-top: 4px;
+  }
+
+  /* FILTROS */
+  .filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .filters input, .filters select {
+    font-family: inherit;
+    font-size: 13px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #FFF;
+  }
+  .filters input { flex: 1; min-width: 200px; }
+  .filters input:focus, .filters select:focus {
+    outline: none;
+    border-color: var(--ink);
+  }
+  .filters .btn { width: auto; }
+
+  /* TABELA */
+  .table-wrap {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  table { width: 100%; border-collapse: collapse; }
+  th, td {
+    text-align: left;
+    padding: 12px 14px;
+    font-size: 13px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: middle;
+  }
+  th {
+    background: var(--bg);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--ink-mute);
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: #FAFAF9; }
+  td .muted { color: var(--ink-mute); font-size: 12px; display: block; }
+  td .name { font-weight: 600; }
+  td .amount {
+    font-weight: 700;
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  .badge.paid { background: #DCFCE7; color: #166534; }
+  .badge.pending { background: var(--yellow-soft); color: #92400E; }
+  .badge.delivered { background: var(--blue-soft); color: #1E40AF; }
+  .badge.cancelled { background: var(--red-soft); color: #991B1B; }
+  .badge.new { background: var(--blue-soft); color: #1E40AF; }
+  .badge.contacted { background: #F3E8FF; color: #6B21A8; }
+  .badge.converted { background: #DCFCE7; color: #166534; }
+  .badge.lost { background: var(--red-soft); color: #991B1B; }
+
+  .actions { display: flex; gap: 6px; flex-wrap: wrap; }
+  .action-btn {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 10px;
+    border: 1px solid var(--line);
+    background: #FFF;
+    border-radius: 6px;
+    color: var(--ink);
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+  }
+  .action-btn:hover { background: var(--bg); }
+  .action-btn.green {
+    background: var(--green);
+    color: #FFF;
+    border-color: var(--green);
+  }
+  .action-btn.green:hover { background: var(--green-dark); border-color: var(--green-dark); }
+  .action-btn.whats {
+    background: var(--whats);
+    color: #FFF;
+    border-color: var(--whats);
+  }
+  .action-btn.whats:hover { background: #1FAD52; border-color: #1FAD52; }
+  .action-btn.red {
+    background: #FFF;
+    color: var(--red);
+    border-color: #FECACA;
+  }
+  .action-btn.red:hover { background: var(--red-soft); }
+
+  .empty {
+    padding: 48px 24px;
+    text-align: center;
+    color: var(--ink-mute);
+    font-size: 14px;
+  }
+  .empty .icon { margin: 0 auto 12px; color: var(--line); }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 200;
+    backdrop-filter: blur(2px);
+  }
+  .modal-overlay.show { display: flex; }
+  .modal {
+    background: #FFF;
+    border-radius: 16px;
+    padding: 28px;
+    max-width: 520px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  .modal h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+  }
+  .modal p.lede {
+    color: var(--ink-soft);
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  .modal .link-box {
+    background: var(--surface-soft);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-family: 'SF Mono', 'Courier New', monospace;
+    font-size: 12px;
+    word-break: break-all;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+  }
+  .modal .msg-box {
+    background: var(--surface-soft);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 13px;
+    white-space: pre-wrap;
+    line-height: 1.55;
+    color: var(--ink);
+    margin-bottom: 16px;
+    max-height: 240px;
+    overflow-y: auto;
+  }
+  .modal .modal-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .modal .modal-actions .btn { flex: 1; min-width: 140px; }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(120%);
+    background: var(--ink);
+    color: #FFF;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    z-index: 300;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  .toast.success { background: var(--green); }
+  .toast.error { background: var(--red); }
+
+  @media (max-width: 700px) {
+    .topbar { padding: 12px 16px; }
+    .topbar .user .name { display: none; }
+    .container { padding: 16px; }
+    .stat { padding: 14px 16px; }
+    .stat .val { font-size: 22px; }
+    th, td { padding: 10px; font-size: 12px; }
+    .table-wrap { overflow-x: auto; }
+    table { min-width: 800px; }
+    .modal { padding: 22px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== LOGIN ===== -->
+<div id="login-view">
+  <div class="login-card">
+    <div class="brand">Caderno ENEM</div>
+    <h1>Acesso restrito</h1>
+    <p>Painel administrativo. Faça login para continuar.</p>
+
+    <div class="error-msg" id="login-error"></div>
+
+    <form id="login-form">
+      <div class="field">
+        <label for="username">Usuário</label>
+        <input type="text" id="username" required autocomplete="username" placeholder="admin">
+      </div>
+      <div class="field">
+        <label for="password">Senha</label>
+        <input type="password" id="password" required autocomplete="current-password" placeholder="••••••••">
+      </div>
+      <button type="submit" class="btn" id="login-btn">Entrar</button>
+    </form>
+  </div>
+</div>
+
+<!-- ===== PAINEL ===== -->
+<div id="panel-view">
+  <div class="topbar">
+    <div class="brand">
+      <span class="dot"></span>
+      Caderno ENEM · Admin
+    </div>
+    <div class="user">
+      <span class="name" id="user-name">—</span>
+      <button class="logout" id="logout-btn">Sair</button>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stat">
+        <div class="lbl">Faturamento total</div>
+        <div class="val green" id="stat-revenue">R$ 0,00</div>
+        <div class="hint" id="stat-today">Hoje: R$ 0,00</div>
+      </div>
+      <div class="stat">
+        <div class="lbl">Pedidos pagos</div>
+        <div class="val" id="stat-paid">0</div>
+        <div class="hint" id="stat-total-orders">Total: 0 pedidos</div>
+      </div>
+      <div class="stat">
+        <div class="lbl">Pendentes</div>
+        <div class="val yellow" id="stat-pending">0</div>
+        <div class="hint">Aguardando pagamento</div>
+      </div>
+      <div class="stat">
+        <div class="lbl">Carrinho abandonado</div>
+        <div class="val blue" id="stat-abandoned">0</div>
+        <div class="hint" id="stat-total-leads">Total: 0 leads</div>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab active" data-tab="orders">
+        Pedidos
+        <span class="count" id="tab-count-orders">0</span>
+      </button>
+      <button class="tab" data-tab="leads">
+        Carrinho abandonado
+        <span class="count" id="tab-count-leads">0</span>
+      </button>
+    </div>
+
+    <!-- TAB: PEDIDOS -->
+    <div class="tab-content active" id="tab-orders">
+      <div class="filters">
+        <input type="text" id="orders-search" placeholder="Buscar por nome, e-mail, telefone ou ID...">
+        <select id="orders-status">
+          <option value="">Todos os status</option>
+          <option value="PENDING">Pendentes</option>
+          <option value="PAID">Pagos</option>
+          <option value="CANCELLED">Cancelados</option>
+          <option value="DELIVERED">Entregues</option>
+        </select>
+        <button class="btn ghost" id="orders-refresh" style="width:auto;">Atualizar</button>
+        <button class="btn ghost" id="orders-export" style="width:auto;">Exportar CSV</button>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Cliente</th>
+              <th>Contato</th>
+              <th>Itens</th>
+              <th>Valor</th>
+              <th>Status</th>
+              <th>Data</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="orders-tbody">
+            <tr><td colspan="7" class="empty">Carregando...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB: LEADS -->
+    <div class="tab-content" id="tab-leads">
+      <div class="filters">
+        <input type="text" id="leads-search" placeholder="Buscar por nome, telefone ou e-mail...">
+        <select id="leads-status">
+          <option value="">Todos os status</option>
+          <option value="NEW">Novos</option>
+          <option value="CONTACTED">Contatados</option>
+          <option value="CONVERTED">Convertidos</option>
+          <option value="LOST">Perdidos</option>
+        </select>
+        <button class="btn ghost" id="leads-refresh" style="width:auto;">Atualizar</button>
+        <button class="btn ghost" id="leads-export" style="width:auto;">Exportar CSV</button>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>WhatsApp</th>
+              <th>E-mail</th>
+              <th>Valor</th>
+              <th>Status</th>
+              <th>Data</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="leads-tbody">
+            <tr><td colspan="7" class="empty">Carregando...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== MODAL DE ENTREGA ===== -->
+<div class="modal-overlay" id="deliver-modal">
+  <div class="modal">
+    <h2>Link de entrega pronto</h2>
+    <p class="lede">Copie o link e envie pro cliente via WhatsApp.</p>
+
+    <div style="font-size:12px; font-weight:700; color:var(--ink-mute); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">Link</div>
+    <div class="link-box" id="deliver-link">—</div>
+
+    <div style="font-size:12px; font-weight:700; color:var(--ink-mute); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">Mensagem</div>
+    <div class="msg-box" id="deliver-message">—</div>
+
+    <div class="modal-actions">
+      <button class="btn ghost" id="deliver-copy">Copiar link</button>
+      <a class="btn whats" id="deliver-whats" target="_blank" rel="noopener">Abrir WhatsApp</a>
+    </div>
+    <button class="btn ghost" id="deliver-close" style="margin-top:10px;">Fechar</button>
+  </div>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ============================================================
+// CONFIG
+// ============================================================
+const API = '';
+const TOKEN_KEY = 'enem_admin_token';
+
+const PRODUCTS = {
+  guia: { name: 'Guia 30 Temas de Redação' },
+  checklist: { name: 'Checklist Redação Nota 1000' }
+};
+
+// ============================================================
+// HELPERS
+// ============================================================
+function $(id) { return document.getElementById(id); }
+
+function formatBRL(n) {
+  return 'R$ ' + Number(n || 0).toFixed(2).replace('.', ',');
+}
+
+function formatDate(str) {
+  if (!str) return '—';
+  const d = new Date(str);
+  return d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })
+    + ' ' + d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+}
+
+function maskPhone(p) {
+  if (!p) return '—';
+  const v = String(p).replace(/\D/g, '');
+  if (v.length === 11) return `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+  if (v.length === 10) return `(${v.slice(0,2)}) ${v.slice(2,6)}-${v.slice(6)}`;
+  return p;
+}
+
+function getToken() { return localStorage.getItem(TOKEN_KEY); }
+
+async function api(path, options = {}) {
+  const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
+  const token = getToken();
+  if (token) headers['Authorization'] = 'Bearer ' + token;
+
+  const res = await fetch(API + path, { ...options, headers });
+  if (res.status === 401) {
+    logout();
+    throw new Error('Sessão expirada');
+  }
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || data.message || 'Erro');
+  return data;
+}
+
+function toast(msg, type = '') {
+  const el = $('toast');
+  el.textContent = msg;
+  el.className = 'toast show ' + type;
+  setTimeout(() => el.className = 'toast ' + type, 3000);
+}
+
+// ============================================================
+// LOGIN
+// ============================================================
+$('login-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = $('login-btn');
+  const errEl = $('login-error');
+  errEl.classList.remove('show');
+  btn.disabled = true;
+  btn.textContent = 'Entrando...';
+
+  try {
+    const res = await fetch(API + '/api/admin/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: $('username').value.trim(),
+        password: $('password').value
+      })
+    });
+    const data = await res.json();
+
+    if (!res.ok) {
+      errEl.textContent = data.error || 'Erro ao entrar';
+      errEl.classList.add('show');
+      btn.disabled = false;
+      btn.textContent = 'Entrar';
+      return;
+    }
+
+    localStorage.setItem(TOKEN_KEY, data.token);
+    localStorage.setItem('enem_admin_user', JSON.stringify(data.user));
+    showPanel(data.user);
+  } catch (err) {
+    errEl.textContent = 'Erro de conexão. Tente novamente.';
+    errEl.classList.add('show');
+    btn.disabled = false;
+    btn.textContent = 'Entrar';
+  }
+});
+
+function logout() {
+  localStorage.removeItem(TOKEN_KEY);
+  localStorage.removeItem('enem_admin_user');
+  $('panel-view').classList.remove('show');
+  $('login-view').style.display = 'flex';
+}
+
+$('logout-btn').addEventListener('click', () => {
+  if (confirm('Sair do painel?')) logout();
+});
+
+// ============================================================
+// INICIALIZAÇÃO
+// ============================================================
+async function checkAuth() {
+  const token = getToken();
+  if (!token) return false;
+  try {
+    const res = await fetch(API + '/api/admin/verify', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    if (!res.ok) return false;
+    const data = await res.json();
+    showPanel(data.user);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function showPanel(user) {
+  $('login-view').style.display = 'none';
+  $('panel-view').classList.add('show');
+  $('user-name').textContent = user?.nome || user?.username || 'Admin';
+  loadStats();
+  loadOrders();
+  loadLeads();
+}
+
+// ============================================================
+// STATS
+// ============================================================
+async function loadStats() {
+  try {
+    const res = await api('/api/admin/stats');
+    const s = res.stats || {};
+    $('stat-revenue').textContent = formatBRL(s.revenue);
+    $('stat-today').textContent = 'Hoje: ' + formatBRL(s.todayRevenue);
+    $('stat-paid').textContent = s.paidOrders || 0;
+    $('stat-total-orders').textContent = 'Total: ' + (s.totalOrders || 0) + ' pedidos';
+    $('stat-pending').textContent = s.pendingOrders || 0;
+    $('stat-abandoned').textContent = s.abandonedLeads || 0;
+    $('stat-total-leads').textContent = 'Total: ' + (s.totalLeads || 0) + ' leads';
+  } catch (err) {
+    console.error('Erro stats:', err);
+  }
+}
+
+// ============================================================
+// PEDIDOS
+// ============================================================
+let allOrders = [];
+
+async function loadOrders() {
+  try {
+    const res = await api('/api/admin/orders');
+    allOrders = res.orders || [];
+    renderOrders();
+    $('tab-count-orders').textContent = allOrders.length;
+  } catch (err) {
+    toast('Erro ao carregar pedidos', 'error');
+  }
+}
+
+function renderOrders() {
+  const search = $('orders-search').value.trim().toLowerCase();
+  const status = $('orders-status').value;
+  const tbody = $('orders-tbody');
+
+  let filtered = allOrders;
+
+  if (status) {
+    filtered = filtered.filter(o => {
+      const s = String(o.status || '').toUpperCase();
+      if (status === 'DELIVERED') return !!o.delivered_at;
+      if (status === 'CANCELLED') return s === 'CANCELLED';
+      return s === status;
+    });
+  }
+
+  if (search) {
+    filtered = filtered.filter(o =>
+      (o.name || '').toLowerCase().includes(search) ||
+      (o.email || '').toLowerCase().includes(search) ||
+      (o.phone || '').includes(search) ||
+      (o.transaction_id || '').toLowerCase().includes(search)
+    );
+  }
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="7" class="empty">Nenhum pedido encontrado.</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(o => {
+    const items = Array.isArray(o.items) ? o.items : [];
+    const itemsLabel = items.length
+      ? items.map(i => PRODUCTS[i.id]?.name || i.name).join(' + ')
+      : 'Guia 30 Temas';
+
+    const statusUpper = String(o.status || '').toUpperCase();
+    let badge = `<span class="badge pending">Pendente</span>`;
+    if (o.delivered_at) badge = `<span class="badge delivered">Entregue</span>`;
+    else if (statusUpper === 'PAID') badge = `<span class="badge paid">Pago</span>`;
+    else if (statusUpper === 'CANCELLED') badge = `<span class="badge cancelled">Cancelado</span>`;
+
+    const canDeliver = (statusUpper === 'PAID') && !o.delivered_at;
+    const canWhats = !!o.phone;
+
+    return `
+      <tr>
+        <td>
+          <span class="name">${escapeHtml(o.name || '—')}</span>
+          <span class="muted">${escapeHtml(o.document || '—')}</span>
+        </td>
+        <td>
+          <span>${maskPhone(o.phone)}</span>
+          <span class="muted">${escapeHtml(o.email || '—')}</span>
+        </td>
+        <td style="max-width:220px; font-size:12px;">${escapeHtml(itemsLabel)}</td>
+        <td><span class="amount">${formatBRL(o.amount)}</span></td>
+        <td>${badge}</td>
+        <td><span class="muted">${formatDate(o.created_at)}</span></td>
+        <td>
+          <div class="actions">
+            ${canDeliver ? `<button class="action-btn green" onclick="deliverOrder(${o.id})">Entregar</button>` : ''}
+            ${canWhats ? `<a class="action-btn whats" target="_blank" rel="noopener" href="https://wa.me/55${(o.phone||'').replace(/\D/g,'')}">WhatsApp</a>` : ''}
+            ${statusUpper === 'PENDING' ? `<button class="action-btn red" onclick="cancelOrder(${o.id})">Cancelar</button>` : ''}
+          </div>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function escapeHtml(s) {
+  return String(s || '').replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+}
+
+$('orders-search').addEventListener('input', renderOrders);
+$('orders-status').addEventListener('change', renderOrders);
+$('orders-refresh').addEventListener('click', () => { loadOrders(); loadStats(); toast('Atualizado'); });
+
+// ============================================================
+// ENTREGA
+// ============================================================
+async function deliverOrder(id) {
+  try {
+    const res = await api('/api/admin/orders/' + id + '/deliver', { method: 'POST' });
+    if (!res.success) throw new Error(res.error || 'Erro');
+
+    const { link, phone, name, items, expiraEm } = res;
+    const primeiroNome = (name || '').split(' ')[0] || 'tudo bem';
+
+    const listaItens = (items && items.length)
+      ? items.map(i => '• ' + (PRODUCTS[i.id]?.name || i.name)).join('\n')
+      : '• Guia 30 Temas de Redação';
+
+    const expira = expiraEm
+      ? new Date(expiraEm).toLocaleDateString('pt-BR')
+      : '';
+
+    const mensagem =
+`Oi, ${primeiroNome}! Tudo bem?
+
+Aqui é do Caderno ENEM. Seu material já está liberado:
+
+${listaItens}
+
+Baixe por aqui:
+${link}
+${expira ? `\nO link fica disponível até ${expira}.` : ''}
+
+Qualquer dúvida, é só responder essa mensagem.
+
+Bons estudos!`;
+
+    $('deliver-link').textContent = link;
+    $('deliver-message').textContent = mensagem;
+    $('deliver-copy').onclick = () => {
+      navigator.clipboard.writeText(link);
+      toast('Link copiado', 'success');
+    };
+
+    const waNumber = (phone || '').replace(/\D/g, '');
+    const waLink = 'https://wa.me/55' + waNumber + '?text=' + encodeURIComponent(mensagem);
+    $('deliver-whats').href = waLink;
+
+    $('deliver-modal').classList.add('show');
+    loadOrders();
+    loadStats();
+  } catch (err) {
+    toast('Erro ao gerar link: ' + err.message, 'error');
+  }
+}
+
+$('deliver-close').addEventListener('click', () => {
+  $('deliver-modal').classList.remove('show');
+});
+
+$('deliver-modal').addEventListener('click', (e) => {
+  if (e.target === $('deliver-modal')) $('deliver-modal').classList.remove('show');
+});
+
+async function cancelOrder(id) {
+  if (!confirm('Marcar esse pedido como cancelado?')) return;
+  try {
+    await api('/api/admin/orders/' + id, {
+      method: 'PUT',
+      body: JSON.stringify({ status: 'CANCELLED' })
+    });
+    toast('Pedido cancelado', 'success');
+    loadOrders();
+    loadStats();
+  } catch {
+    toast('Erro ao cancelar', 'error');
+  }
+}
+
+// ============================================================
+// LEADS
+// ============================================================
+let allLeads = [];
+
+async function loadLeads() {
+  try {
+    const res = await api('/api/admin/leads');
+    allLeads = res.leads || [];
+    renderLeads();
+    $('tab-count-leads').textContent = allLeads.length;
+  } catch (err) {
+    toast('Erro ao carregar leads', 'error');
+  }
+}
+
+function renderLeads() {
+  const search = $('leads-search').value.trim().toLowerCase();
+  const status = $('leads-status').value;
+  const tbody = $('leads-tbody');
+
+  let filtered = allLeads;
+  if (status) filtered = filtered.filter(l => String(l.status || 'NEW').toUpperCase() === status);
+  if (search) {
+    filtered = filtered.filter(l =>
+      (l.name || '').toLowerCase().includes(search) ||
+      (l.email || '').toLowerCase().includes(search) ||
+      (l.phone || '').includes(search)
+    );
+  }
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="7" class="empty">Nenhum lead encontrado.</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(l => {
+    const statusLower = String(l.status || 'NEW').toLowerCase();
+    const statusLabels = {
+      new: 'Novo', contacted: 'Contatado',
+      converted: 'Convertido', lost: 'Perdido'
+    };
+    const badge = `<span class="badge ${statusLower}">${statusLabels[statusLower] || 'Novo'}</span>`;
+
+    const waLink = 'https://wa.me/55' + (l.phone || '').replace(/\D/g, '')
+      + '?text=' + encodeURIComponent(
+        `Oi, ${(l.name || '').split(' ')[0]}! Vi que você começou a comprar o Guia 30 Temas de Redação ENEM mas não finalizou. Ainda quer garantir? Posso te ajudar com qualquer dúvida.`
+      );
+
+    return `
+      <tr>
+        <td><span class="name">${escapeHtml(l.name || '—')}</span></td>
+        <td>${maskPhone(l.phone)}</td>
+        <td><span class="muted">${escapeHtml(l.email || '—')}</span></td>
+        <td><span class="amount">${formatBRL(l.amount)}</span></td>
+        <td>${badge}</td>
+        <td><span class="muted">${formatDate(l.created_at)}</span></td>
+        <td>
+          <div class="actions">
+            <a class="action-btn whats" target="_blank" rel="noopener" href="${waLink}">Chamar</a>
+            <button class="action-btn" onclick="markLead(${l.id}, 'CONTACTED')">Contatado</button>
+            <button class="action-btn green" onclick="markLead(${l.id}, 'CONVERTED')">Convertido</button>
+            <button class="action-btn red" onclick="deleteLead(${l.id})">Excluir</button>
+          </div>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+async function markLead(id, status) {
+  try {
+    await api('/api/admin/leads/' + id, {
+      method: 'PUT',
+      body: JSON.stringify({ status })
+    });
+    toast('Lead atualizado', 'success');
+    loadLeads();
+    loadStats();
+  } catch {
+    toast('Erro ao atualizar', 'error');
+  }
+}
+
+async function deleteLead(id) {
+  if (!confirm('Excluir esse lead?')) return;
+  try {
+    await api('/api/admin/leads/' + id, { method: 'DELETE' });
+    toast('Lead excluído', 'success');
+    loadLeads();
+    loadStats();
+  } catch {
+    toast('Erro ao excluir', 'error');
+  }
+}
+
+$('leads-search').addEventListener('input', renderLeads);
+$('leads-status').addEventListener('change', renderLeads);
+$('leads-refresh').addEventListener('click', () => { loadLeads(); loadStats(); toast('Atualizado'); });
+
+// ============================================================
+// TABS
+// ============================================================
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const target = tab.dataset.tab;
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    tab.classList.add('active');
+    $('tab-' + target).classList.add('active');
+  });
+});
+
+// ============================================================
+// EXPORTAR CSV
+// ============================================================
+function toCSV(rows, cols) {
+  const esc = v => `"${String(v ?? '').replace(/"/g, '""')}"`;
+  const header = cols.map(c => esc(c.label)).join(',');
+  const lines = rows.map(r => cols.map(c => esc(c.get(r))).join(','));
+  return [header, ...lines].join('\n');
+}
+
+function downloadCSV(filename, csv) {
+  const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+$('orders-export').addEventListener('click', () => {
+  const cols = [
+    { label: 'ID', get: o => o.transaction_id },
+    { label: 'Nome', get: o => o.name },
+    { label: 'Email', get: o => o.email },
+    { label: 'Telefone', get: o => o.phone },
+    { label: 'CPF', get: o => o.document },
+    { label: 'Valor', get: o => o.amount },
+    { label: 'Status', get: o => o.status },
+    { label: 'Entregue', get: o => o.delivered_at ? 'Sim' : 'Não' },
+    { label: 'Criado', get: o => o.created_at },
+    { label: 'Pago em', get: o => o.paid_at }
+  ];
+  downloadCSV('pedidos.csv', toCSV(allOrders, cols));
+});
+
+$('leads-export').addEventListener('click', () => {
+  const cols = [
+    { label: 'Nome', get: l => l.name },
+    { label: 'Email', get: l => l.email },
+    { label: 'Telefone', get: l => l.phone },
+    { label: 'Valor', get: l => l.amount },
+    { label: 'Status', get: l => l.status },
+    { label: 'Criado', get: l => l.created_at }
+  ];
+  downloadCSV('leads.csv', toCSV(allLeads, cols));
+});
+
+// ============================================================
+// AUTO-REFRESH
+// ============================================================
+setInterval(() => {
+  if ($('panel-view').classList.contains('show')) {
+    loadStats();
+    loadOrders();
+    loadLeads();
+  }
+}, 30000);
+
+// ============================================================
+// BOOT
+// ============================================================
+checkAuth();
+</script>
+
+</body>
+</html>
