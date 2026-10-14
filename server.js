@@ -2,23 +2,24 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
-require('dotenv').config();
 
 const { pool, initDatabase } = require('./src/db');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const PLUMIFY_PRODUCT_HASH = process.env.PLUMIFY_PRODUCT_HASH;
-const PLUMIFY_API_TOKEN = process.env.PLUMIFY_API_TOKEN;
-const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
+// ============================================================
+// CONFIGURAÇÕES — cole seus valores aqui
+// ============================================================
+const PLUMIFY_PRODUCT_HASH = 'seu_hash_aqui';
+const PLUMIFY_API_TOKEN = 'seu_token_aqui';
+const BASE_URL = 'https://enem-p733.onrender.com/';
 
 app.use(cors({ origin: '*', credentials: true }));
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Inicializa banco no boot
 initDatabase();
 
 // ============================================================
@@ -83,7 +84,6 @@ app.post('/api/create-pix', async (req, res) => {
       });
     }
 
-    // Grava pedido como PENDING no Neon
     try {
       await pool.query(
         `INSERT INTO orders (transaction_id, name, email, phone, document, amount, status)
@@ -100,7 +100,6 @@ app.post('/api/create-pix', async (req, res) => {
       );
     } catch (dbErr) {
       console.error('Erro ao gravar pedido no Neon:', dbErr.message);
-      // Não bloqueia a resposta — o cliente ainda recebe o PIX
     }
 
     return res.json({
@@ -120,7 +119,7 @@ app.post('/api/create-pix', async (req, res) => {
 });
 
 // ============================================================
-// WEBHOOK — Plumify avisa quando o PIX foi pago
+// WEBHOOK
 // ============================================================
 app.post('/api/webhook/pagamento', async (req, res) => {
   const { hash, status } = req.body;
@@ -137,7 +136,6 @@ app.post('/api/webhook/pagamento', async (req, res) => {
       );
 
       if (result.rowCount === 0) {
-        // Webhook chegou antes do INSERT (raro, mas acontece)
         console.warn(`Pedido ${hash} não encontrado — inserindo como pago direto`);
         await pool.query(
           `INSERT INTO orders (transaction_id, amount, status, paid_at)
@@ -148,7 +146,6 @@ app.post('/api/webhook/pagamento', async (req, res) => {
         );
       } else {
         console.log(`Pedido ${hash} marcado como PAID (cliente: ${result.rows[0].email})`);
-        // TODO: disparar e-mail com o PDF aqui (fica pro #4)
       }
     } catch (err) {
       console.error('Erro webhook no Neon:', err.message);
@@ -159,7 +156,7 @@ app.post('/api/webhook/pagamento', async (req, res) => {
 });
 
 // ============================================================
-// CONSULTA STATUS — front faz polling aqui, agora lendo do Neon
+// CONSULTA STATUS
 // ============================================================
 app.get('/api/pix-status', async (req, res) => {
   const { transactionId } = req.query;
