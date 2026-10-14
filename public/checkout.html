@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout PIX — Guia ENEM R$ 3,49</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF9;
+    --surface: #FFFFFF;
+    --ink: #18181B;
+    --ink-soft: #52525B;
+    --ink-mute: #A1A1AA;
+    --line: #E7E5E4;
+    --green: #16A34A;
+    --green-dark: #15803D;
+    --yellow: #FACC15;
+    --yellow-bg: #FEF9C3;
+    --red: #DC2626;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 520px; margin: 0 auto; padding: 0 24px; }
+
+  header {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line);
+    text-align: center;
+  }
+  header .brand {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 500;
+  }
+
+  main { padding: 40px 0 80px; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 32px 28px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 12px 40px rgba(0,0,0,0.04);
+    margin-bottom: 20px;
+  }
+
+  .step-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .step-indicator .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--ink-mute);
+  }
+  .step-indicator .dot.active { background: var(--green); }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+    margin-bottom: 8px;
+  }
+  .sub {
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  .field { margin-bottom: 16px; }
+  .field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .field input {
+    width: 100%;
+    font-family: inherit;
+    font-size: 16px;
+    color: var(--ink);
+    padding: 13px 15px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #FFF;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .field input:focus {
+    outline: none;
+    border-color: var(--ink);
+    box-shadow: 0 0 0 3px rgba(24,24,27,0.08);
+  }
+
+  .btn {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--green);
+    color: #FFF;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 17px 24px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    box-shadow: 0 5px 0 var(--green-dark);
+    letter-spacing: -0.2px;
+    margin-top: 8px;
+  }
+  .btn:hover { transform: translateY(2px); box-shadow: 0 3px 0 var(--green-dark); }
+  .btn:active { transform: translateY(5px); box-shadow: 0 0 0 var(--green-dark); }
+  .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  .note {
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-align: center;
+    margin-top: 14px;
+    line-height: 1.5;
+  }
+
+  /* PIX DISPLAY */
+  .pix-box { display: none; text-align: center; }
+  .pix-box.show { display: block; }
+  .pix-box h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .pix-box p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+  }
+  .qr-container {
+    background: #FFF;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+  .qr-container img {
+    display: block;
+    width: 220px;
+    height: 220px;
+  }
+  .copy-box {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-family: 'SF Mono', 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+    word-break: break-all;
+    text-align: left;
+    max-height: 100px;
+    overflow-y: auto;
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+  .copy-btn {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--ink);
+    color: #FFF;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 13px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .copy-btn:hover { background: #000; }
+  .copy-btn.copied { background: var(--green); }
+
+  .status {
+    margin-top: 20px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .status.waiting {
+    background: var(--yellow-bg);
+    color: #854D0E;
+    border: 1px solid #FDE68A;
+  }
+  .status.waiting::before {
+    content: '';
+    width: 12px; height: 12px;
+    border: 2px solid #854D0E;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ORDER SUMMARY */
+  .summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    margin-top: 20px;
+  }
+  .summary .label {
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .summary .value {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .trust-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    flex-wrap: wrap;
+  }
+  .trust-row span {
+    font-size: 11px;
+    color: var(--ink-mute);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .trust-row svg { color: var(--ink-soft); }
+
+  footer {
+    padding: 24px 0;
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-mute);
+  }
+  footer a { color: var(--ink-mute); text-decoration: none; margin: 0 8px; }
+  footer a:hover { color: var(--ink); }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 24px; }
+    .card { padding: 24px 20px; }
+    .qr-container img { width: 180px; height: 180px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">Caderno ENEM</div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <!-- ETAPA 1: FORM -->
+    <div class="card" id="form-step">
+      <div class="step-indicator">
+        <span class="dot active"></span>
+        <span>Etapa 1 de 2 · Seus dados</span>
+      </div>
+      <h1>Falta pouco pro seu guia.</h1>
+      <p class="sub">Preencha os dados abaixo e gere o PIX. A liberação é automática após o pagamento.</p>
+
+      <form id="pix-form">
+        <div class="field">
+          <label for="name">Nome completo</label>
+          <input type="text" id="name" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="phone">WhatsApp</label>
+          <input type="tel" id="phone" required autocomplete="tel" placeholder="(00) 00000-0000">
+        </div>
+        <div class="field">
+          <label for="document">CPF</label>
+          <input type="text" id="document" required inputmode="numeric" placeholder="000.000.000-00">
+        </div>
+
+        <div class="summary">
+          <span class="label">Guia 30 Temas de Redação</span>
+          <span class="value">R$ 3,49</span>
+        </div>
+
+        <button type="submit" class="btn" id="submit-btn">
+          GERAR PIX DE R$ 3,49
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <p class="note">Seus dados estão seguros. Não enviamos spam.</p>
+      </form>
+
+      <div class="trust-row">
+        <span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Seguro
+        </span>
+        <span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Garantia 7 dias
+        </span>
+        <span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Liberação imediata
+        </span>
+      </div>
+    </div>
+
+    <!-- ETAPA 2: PIX -->
+    <div class="card pix-box" id="pix-step">
+      <div class="step-indicator">
+        <span class="dot active"></span>
+        <span>Etapa 2 de 2 · Pagamento</span>
+      </div>
+      <h2>Pague com PIX para liberar</h2>
+      <p>Abra o app do seu banco, escaneie o QR code ou copie o código abaixo.</p>
+
+      <div class="qr-container">
+        <img id="qr-img" alt="QR Code PIX" src="">
+      </div>
+
+      <div class="copy-box" id="copy-code"></div>
+      <button class="copy-btn" id="copy-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        COPIAR CÓDIGO PIX
+      </button>
+
+      <div class="status waiting" id="status-box">
+        Aguardando confirmação do pagamento...
+      </div>
+
+      <p class="note" style="margin-top: 16px;">
+        Após o pagamento, a liberação é automática.<br>
+        Não feche esta página.
+      </p>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="/privacidade">Privacidade</a> ·
+    <a href="/termos">Termos</a> ·
+    <a href="/contato">Contato</a>
+  </div>
+</footer>
+
+<script src="/js/checkout.js"></script>
+</body>
+</html>

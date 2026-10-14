@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pagamento confirmado — Caderno ENEM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF9; --surface: #FFF;
+    --ink: #18181B; --ink-soft: #52525B; --ink-mute: #A1A1AA;
+    --line: #E7E5E4;
+    --green: #16A34A; --green-dark: #15803D;
+    --yellow-bg: #FEF9C3;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg); color: var(--ink);
+    line-height: 1.6; -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 520px; margin: 0 auto; padding: 0 24px; }
+  header {
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+    text-align: center;
+  }
+  header .brand { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 500; }
+  main { padding: 48px 0 80px; }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 16px; padding: 36px 28px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 12px 40px rgba(0,0,0,0.04);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .check-icon {
+    width: 64px; height: 64px;
+    border-radius: 50%; background: var(--green);
+    color: #FFF;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 30px; font-weight: 700;
+    line-height: 1.15; letter-spacing: -0.8px;
+    margin-bottom: 10px;
+  }
+  .sub { font-size: 16px; color: var(--ink-soft); margin-bottom: 28px; }
+
+  .btn {
+    width: 100%;
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 10px;
+    background: var(--green); color: #FFF;
+    font-family: inherit; font-size: 16px; font-weight: 700;
+    padding: 17px 24px; border: none; border-radius: 10px;
+    text-decoration: none; cursor: pointer;
+    transition: all 0.15s ease;
+    box-shadow: 0 5px 0 var(--green-dark);
+    letter-spacing: -0.2px;
+  }
+  .btn:hover { transform: translateY(2px); box-shadow: 0 3px 0 var(--green-dark); }
+
+  .email-note {
+    font-size: 13px; color: var(--ink-mute);
+    margin-top: 16px; line-height: 1.5;
+  }
+
+  /* UPSELL */
+  .upsell {
+    background: #FFFBEB;
+    border: 2px dashed #FCD34D;
+    border-radius: 16px;
+    padding: 28px 24px;
+    margin-top: 24px;
+  }
+  .upsell .tag {
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.8px; text-transform: uppercase;
+    color: #92400E; margin-bottom: 10px;
+  }
+  .upsell h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px; font-weight: 700;
+    margin-bottom: 8px; letter-spacing: -0.5px;
+    line-height: 1.2;
+  }
+  .upsell p {
+    font-size: 14px; color: var(--ink-soft);
+    margin-bottom: 20px; line-height: 1.55;
+  }
+  .upsell .price-line {
+    display: flex; align-items: baseline; justify-content: center;
+    gap: 12px; margin-bottom: 18px;
+  }
+  .upsell .price-old {
+    font-size: 16px; color: var(--ink-mute);
+    text-decoration: line-through;
+  }
+  .upsell .price-new {
+    font-family: 'Fraunces', serif;
+    font-size: 32px; font-weight: 700;
+    letter-spacing: -1px;
+  }
+  .btn-up {
+    background: var(--ink);
+    box-shadow: 0 5px 0 #000;
+  }
+  .btn-up:hover { box-shadow: 0 3px 0 #000; }
+
+  footer {
+    padding: 24px 0; text-align: center;
+    font-size: 12px; color: var(--ink-mute);
+  }
+  footer a { color: var(--ink-mute); text-decoration: none; margin: 0 8px; }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 24px; }
+    .card { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">Caderno ENEM</div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <div class="card">
+      <div class="check-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h1>Pagamento confirmado.</h1>
+      <p class="sub">Seu guia já está liberado. Clique abaixo para baixar.</p>
+
+      <a href="/downloads/guia-30-temas.pdf" class="btn" download>
+        BAIXAR MEU GUIA
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      </a>
+
+      <p class="email-note">
+        Também enviamos o link para o seu e-mail.<br>
+        Não recebeu? Verifique o spam.
+      </p>
+    </div>
+
+    <!-- UPSELL -->
+    <div class="upsell">
+      <div class="tag">Oferta exclusiva · Só agora</div>
+      <h3>Leve o Kit Completo de Redação por R$ 27.</h3>
+      <p>50 redações nota 1000 comentadas, competência por competência. O complemento perfeito pro seu guia.</p>
+
+      <div class="price-line">
+        <span class="price-old">R$ 67,00</span>
+        <span class="price-new">R$ 27,00</span>
+      </div>
+
+      <a href="/checkout?upsell=kit-redacao" class="btn btn-up">
+        QUERO O KIT COMPLETO
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="/privacidade">Privacidade</a> ·
+    <a href="/termos">Termos</a> ·
+    <a href="/contato">Contato</a>
+  </div>
+</footer>
+
+</body>
+</html>
