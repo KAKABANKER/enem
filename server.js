@@ -48,9 +48,9 @@ app.post('/api/create-pix', async (req, res) => {
       city: 'Fortaleza', state: 'CE', zip_code: '60000000'
     },
     cart: [{
-      product_hash: PLUMIFY_PRODUCT_HASH,
-      title: 'Guia 30 Temas de Redação ENEM',
-      price: valorCents, quantity: 1, operation_type: 1, tangible: false
+    product_hash: PLUMIFY_PRODUCT_HASH,
+    title: 'Método ENEM: Guia Completo de Redação',
+    price: valorCents, quantity: 1, operation_type: 1, tangible: false
     }],
     expire_in_days: 1,
     transaction_origin: 'api',
