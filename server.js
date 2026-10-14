@@ -11,8 +11,8 @@ const PORT = process.env.PORT || 3000;
 // ============================================================
 // CONFIGURAÇÕES — cole seus valores aqui
 // ============================================================
-const PLUMIFY_PRODUCT_HASH = 'seu_hash_aqui';
-const PLUMIFY_API_TOKEN = 'seu_token_aqui';
+const PLUMIFY_PRODUCT_HASH = 'huk4la8duy';
+const PLUMIFY_API_TOKEN = '0RRWtMOuHsAQlR7S0zEnlGBnLEnr8DgoDJS3GTecxH7nZr2X01kHo6rxrOGa';
 const BASE_URL = 'https://enem-p733.onrender.com/';
 
 app.use(cors({ origin: '*', credentials: true }));
