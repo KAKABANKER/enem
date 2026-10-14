@@ -14,7 +14,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const PLUMIFY_PRODUCT_HASH = 'huk4la8duy';
 const PLUMIFY_API_TOKEN = '0RRWtMOuHsAQlR7S0zEnlGBnLEnr8DgoDJS3GTecxH7nZr2X01kHo6rxrOGa';
-const BASE_URL = 'https://enem-p733.onrender.com/';
+const BASE_URL = 'https://enem-p733.onrender.com';
 
 app.use(cors({ origin: '*', credentials: true }));
 app.use(bodyParser.json({ limit: '10mb' }));
@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 initDatabase();
 
-// ============ PIX (igual ao que já tem) ============
+// ============ PIX ============
 app.post('/api/create-pix', async (req, res) => {
   const { name, email, phone, document, amount, items, coupon, discount } = req.body;
 
@@ -178,6 +178,34 @@ app.post('/api/admin/login', async (req, res) => {
 
 app.get('/api/admin/verify', authenticate, (req, res) => res.json({ valid: true, user: req.user }));
 
+// ============ ADMIN — TROCAR SENHA ============
+app.post('/api/admin/change-password', authenticate, async (req, res) => {
+  const { senhaAtual, novaSenha } = req.body;
+
+  if (!senhaAtual || !novaSenha) {
+    return res.status(400).json({ error: 'Preencha todos os campos' });
+  }
+  if (novaSenha.length < 8) {
+    return res.status(400).json({ error: 'Nova senha precisa ter ao menos 8 caracteres' });
+  }
+
+  try {
+    const r = await pool.query('SELECT * FROM admin_users WHERE id = $1', [req.user.id]);
+    if (r.rowCount === 0) return res.status(404).json({ error: 'Usuário não encontrado' });
+
+    const valid = await bcrypt.compare(senhaAtual, r.rows[0].senha_hash);
+    if (!valid) return res.status(401).json({ error: 'Senha atual incorreta' });
+
+    const novoHash = bcrypt.hashSync(novaSenha, 10);
+    await pool.query('UPDATE admin_users SET senha_hash = $1 WHERE id = $2', [novoHash, req.user.id]);
+
+    return res.json({ success: true });
+  } catch (err) {
+    console.error('Erro change-password:', err.message);
+    return res.status(500).json({ error: 'Erro' });
+  }
+});
+
 // ============ ADMIN STATS ============
 app.get('/api/admin/stats', authenticate, async (req, res) => {
   try {
@@ -198,12 +226,84 @@ app.get('/api/admin/stats', authenticate, async (req, res) => {
   } catch { return res.status(500).json({ error: 'Erro' }); }
 });
 
+// ============ ADMIN — GRÁFICO (últimos 7 dias) ============
+app.get('/api/admin/chart', authenticate, async (req, res) => {
+  try {
+    const r = await pool.query(`
+      SELECT
+        paid_at::date AS data,
+        COALESCE(SUM(amount), 0) AS total,
+        COUNT(*) AS pedidos
+      FROM orders
+      WHERE status = 'PAID'
+        AND paid_at >= NOW() - INTERVAL '7 days'
+      GROUP BY paid_at::date
+      ORDER BY paid_at::date ASC
+    `);
+
+    const map = new Map();
+    r.rows.forEach(row => {
+      const key = new Date(row.data).toISOString().slice(0, 10);
+      map.set(key, { total: parseFloat(row.total), pedidos: parseInt(row.pedidos) });
+    });
+
+    const days = [];
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date();
+      d.setDate(d.getDate() - i);
+      const key = d.toISOString().slice(0, 10);
+      const label = d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+      const found = map.get(key);
+      days.push({
+        label,
+        date: key,
+        total: found ? found.total : 0,
+        pedidos: found ? found.pedidos : 0
+      });
+    }
+
+    return res.json({ success: true, days });
+  } catch (err) {
+    console.error('Erro chart:', err.message);
+    return res.status(500).json({ error: 'Erro' });
+  }
+});
+
 // ============ ADMIN ORDERS ============
 app.get('/api/admin/orders', authenticate, async (req, res) => {
   try {
     const r = await pool.query('SELECT * FROM orders ORDER BY created_at DESC LIMIT 500');
     return res.json({ success: true, orders: r.rows });
   } catch { return res.status(500).json({ error: 'Erro' }); }
+});
+
+app.put('/api/admin/orders/:id', authenticate, async (req, res) => {
+  const { status } = req.body;
+  const allowed = ['PENDING', 'PAID', 'CANCELLED', 'DELIVERED'];
+  if (!allowed.includes(status)) return res.status(400).json({ error: 'Status inválido' });
+  try {
+    await pool.query('UPDATE orders SET status = $1 WHERE id = $2', [status, req.params.id]);
+    return res.json({ success: true });
+  } catch { return res.status(500).json({ error: 'Erro' }); }
+});
+
+// ============ ADMIN — MARCAR COMO PAGO ============
+app.put('/api/admin/orders/:id/mark-paid', authenticate, async (req, res) => {
+  try {
+    const r = await pool.query(
+      `UPDATE orders SET status = 'PAID', paid_at = NOW()
+       WHERE id = $1 AND status = 'PENDING'
+       RETURNING id, transaction_id, name, email`,
+      [req.params.id]
+    );
+    if (r.rowCount === 0) {
+      return res.status(400).json({ error: 'Pedido não encontrado ou já está pago' });
+    }
+    return res.json({ success: true, order: r.rows[0] });
+  } catch (err) {
+    console.error('Erro mark-paid:', err.message);
+    return res.status(500).json({ error: 'Erro' });
+  }
 });
 
 // ============ ADMIN LEADS ============
