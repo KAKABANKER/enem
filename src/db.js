@@ -1,15 +1,18 @@
 const { Pool } = require('pg');
-require('dotenv').config();
+
+// ============================================================
+// CONEXÃO COM O BANCO — cole sua URL do Neon aqui
+// ============================================================
+const DATABASE_URL = 'postgresql://neondb_owner:npg_x8hwKdkAYQ6f@ep-steep-sunset-b67bc19e-pooler.c-2.sa-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require';
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: DATABASE_URL,
   ssl: { rejectUnauthorized: false },
   max: 5,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 10000,
 });
 
-// Cria a tabela de pedidos se não existir
 async function initDatabase() {
   const client = await pool.connect();
   try {
