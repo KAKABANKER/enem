@@ -3,30 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Checkout — Método ENEM: Guia Completo de Redação</title>
-<meta name="description" content="Finalize seu pedido do Método ENEM. 30 temas + 10 redações comentadas + 20 repertórios. Pagamento via PIX, liberação imediata.">
+<title>Método ENEM: Guia Completo de Redação Nota 1000 — R$ 3,49</title>
+<meta name="description" content="30 temas com tese pronta, 10 redações nota 1000 comentadas e 20 repertórios legitimados. Por R$ 3,49. Acesso imediato via PIX.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #FAFAF9;
-    --surface: #FFFFFF;
-    --surface-soft: #F5F5F4;
+    --bg: #FFFFFF;
+    --bg-soft: #F7F7F5;
+    --bg-dark: #0F0F0E;
     --ink: #18181B;
     --ink-soft: #52525B;
     --ink-mute: #A1A1AA;
     --line: #E7E5E4;
-    --line-soft: #F0EFEE;
     --green: #16A34A;
     --green-dark: #15803D;
-    --green-soft: #F0FDF4;
+    --red: #DC2626;
     --yellow: #FACC15;
     --yellow-bg: #FEF9C3;
-    --red: #DC2626;
-    --red-soft: #FEF2F2;
-    --blue: #2563EB;
   }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
@@ -34,666 +31,295 @@
     background: var(--bg);
     color: var(--ink);
     line-height: 1.6;
+    font-size: 16px;
     -webkit-font-smoothing: antialiased;
-    min-height: 100vh;
+    padding-bottom: 80px;
   }
 
-  /* ===== TOP BAR ===== */
+  .wrap { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+  svg { display: block; }
+
   .topbar {
-    background: var(--ink);
+    background: var(--bg-dark);
     color: #FFF;
+    text-align: center;
     padding: 10px 16px;
     font-size: 13px;
     font-weight: 500;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
+    letter-spacing: 0.2px;
   }
-  .topbar .item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    color: #D4D4D8;
-  }
-  .topbar .item strong { color: #FFF; font-weight: 700; }
-  .topbar .item svg { color: var(--yellow); }
-  .topbar .divider { color: #3F3F46; }
+  .topbar strong { color: var(--yellow); font-weight: 700; }
 
-  /* ===== HEADER ===== */
-  header {
-    background: var(--surface);
-    padding: 18px 0;
+  .hero {
+    padding: 56px 0 48px;
+    text-align: center;
+    background: linear-gradient(180deg, #FFFFFF 0%, var(--bg-soft) 100%);
     border-bottom: 1px solid var(--line);
   }
-  header .wrap {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  header .brand {
-    font-family: 'Fraunces', serif;
-    font-size: 17px;
-    font-weight: 500;
-  }
-  header .secure {
+  .eyebrow {
+    display: inline-block;
+    background: var(--yellow-bg);
+    color: #854D0E;
     font-size: 12px;
-    color: var(--ink-mute);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-weight: 500;
-  }
-  header .secure svg { color: var(--green); }
-
-  .wrap { max-width: 600px; margin: 0 auto; padding: 0 20px; }
-
-  /* ===== PROGRESS BAR ===== */
-  .progress-bar {
-    background: var(--surface);
-    padding: 16px 0;
-    border-bottom: 1px solid var(--line);
-    position: sticky;
-    top: 0;
-    z-index: 50;
-  }
-  .progress-steps {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 340px;
-    margin: 0 auto;
-    position: relative;
-  }
-  .progress-steps::before {
-    content: '';
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    right: 12px;
-    height: 2px;
-    background: var(--line);
-    z-index: 0;
-  }
-  .progress-steps .bar-fill {
-    content: '';
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    height: 2px;
-    background: var(--green);
-    z-index: 1;
-    transition: width 0.4s ease;
-    width: 0;
-  }
-  .progress-steps .bar-fill.active { width: 50%; }
-  .progress-step {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    position: relative;
-    z-index: 2;
-  }
-  .progress-step .circle {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: var(--surface);
-    border: 2px solid var(--line);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
     font-weight: 700;
-    color: var(--ink-mute);
-    transition: all 0.3s ease;
-  }
-  .progress-step.active .circle {
-    background: var(--green);
-    border-color: var(--green);
-    color: #FFF;
-  }
-  .progress-step .label {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
     text-transform: uppercase;
-    color: var(--ink-mute);
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 24px;
   }
-  .progress-step.active .label { color: var(--green-dark); }
-
-  /* ===== ESCASSEZ ===== */
-  .scarcity {
-    background: linear-gradient(90deg, #FEF3C7 0%, #FEF9C3 100%);
-    border: 1px solid #FCD34D;
-    border-radius: 12px;
-    padding: 14px 18px;
-    margin: 20px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-  }
-  .scarcity .text {
-    font-size: 13px;
-    color: #92400E;
-    font-weight: 600;
-    line-height: 1.3;
-  }
-  .scarcity .text strong {
-    display: block;
-    font-size: 14px;
-    color: #78350F;
-  }
-  .scarcity .timer {
-    font-family: 'SF Mono', monospace;
-    font-size: 20px;
-    font-weight: 800;
-    color: #78350F;
-    letter-spacing: -0.5px;
-    white-space: nowrap;
-    font-variant-numeric: tabular-nums;
-  }
-
-  main { padding: 8px 0 120px; }
-
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 26px 22px;
-    margin-bottom: 16px;
-  }
-  .card.no-pad { padding: 0; overflow: hidden; }
-
   h1 {
     font-family: 'Fraunces', serif;
-    font-size: 26px;
+    font-size: 44px;
     font-weight: 700;
-    line-height: 1.15;
-    letter-spacing: -0.8px;
-    margin-bottom: 6px;
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+    margin-bottom: 20px;
+    color: var(--ink);
+  }
+  h1 .hl {
+    background: linear-gradient(180deg, transparent 60%, var(--yellow) 60%);
+    padding: 0 4px;
   }
   .sub {
-    font-size: 15px;
+    font-size: 19px;
+    line-height: 1.5;
     color: var(--ink-soft);
-    margin-bottom: 22px;
+    max-width: 540px;
+    margin: 0 auto 32px;
   }
+  .sub strong { color: var(--ink); font-weight: 600; }
 
-  /* ===== PRODUTO ===== */
-  .product-preview {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-    padding: 18px;
-    background: var(--surface-soft);
-    border-radius: 12px;
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--green);
+    color: #FFF;
+    font-size: 17px;
+    font-weight: 700;
+    padding: 20px 40px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.15s ease;
+    box-shadow: 0 6px 0 var(--green-dark);
+    border: none;
+    cursor: pointer;
+    letter-spacing: -0.2px;
+    width: 100%;
+    max-width: 420px;
+  }
+  .btn:hover { transform: translateY(2px); box-shadow: 0 4px 0 var(--green-dark); }
+  .btn:active { transform: translateY(6px); box-shadow: 0 0 0 var(--green-dark); }
+  .btn svg { flex-shrink: 0; }
+  .btn-wrap { text-align: center; }
+  .btn-note {
+    font-size: 13px;
+    color: var(--ink-mute);
+    margin-top: 14px;
+  }
+  .btn-note strong { color: var(--ink-soft); font-weight: 600; }
+
+  section { padding: 64px 0; }
+  section.alt { background: var(--bg-soft); }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 16px;
+  }
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -1px;
     margin-bottom: 20px;
   }
-  .product-thumb {
-    width: 64px;
-    height: 84px;
-    background: linear-gradient(135deg, #1F2937, #111827);
-    border-radius: 6px;
-    flex-shrink: 0;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  h2 .hl {
+    background: linear-gradient(180deg, transparent 60%, var(--yellow) 60%);
+    padding: 0 4px;
   }
-  .product-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .product-info { flex: 1; }
-  .product-info h3 {
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 6px;
-  }
-  .product-info .meta {
-    font-size: 12px;
-    color: var(--ink-mute);
-    margin-bottom: 8px;
-  }
-  .product-info .tags {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-  }
-  .tag {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.4px;
-    text-transform: uppercase;
-    padding: 3px 8px;
-    border-radius: 4px;
-    background: var(--surface);
+  p {
     color: var(--ink-soft);
-    border: 1px solid var(--line);
+    font-size: 17px;
+    line-height: 1.65;
+    margin-bottom: 18px;
   }
-  .tag.green { background: var(--green-soft); color: var(--green-dark); border-color: #BBF7D0; }
+  p:last-child { margin-bottom: 0; }
+  p strong { color: var(--ink); font-weight: 600; }
 
-  /* ===== ORDER BUMP ===== */
-  .bump {
-    background: linear-gradient(135deg, #FFFBEB, #FEF3C7);
-    border: 2px dashed #F59E0B;
-    border-radius: 14px;
-    padding: 18px;
-    margin: 20px 0;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    position: relative;
+  .pain-list { list-style: none; margin-top: 28px; }
+  .pain-list li {
+    font-size: 17px;
+    color: var(--ink);
+    padding: 18px 20px;
+    background: #FFF;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--red);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
   }
-  .bump::before {
-    content: 'OFERTA SÓ NESSA PÁGINA';
-    position: absolute;
-    top: -10px;
-    left: 18px;
-    background: #F59E0B;
-    color: #FFF;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.8px;
-    padding: 3px 10px;
-    border-radius: 4px;
-  }
-  .bump:hover { border-color: #D97706; transform: translateY(-1px); }
-  .bump.selected {
-    border-style: solid;
-    border-color: var(--green);
-    background: var(--green-soft);
-  }
-  .bump.selected::before {
-    content: 'ADICIONADO AO PEDIDO';
-    background: var(--green);
-  }
-  .bump-body {
+  .pain-list li svg { flex-shrink: 0; color: var(--red); margin-top: 5px; }
+
+  .for-who { display: grid; gap: 14px; margin-top: 28px; }
+  .for-item {
+    background: #FFF;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px 22px;
     display: flex;
     gap: 14px;
     align-items: flex-start;
   }
-  .bump-checkbox {
-    width: 24px;
-    height: 24px;
-    border: 2px solid #92400E;
-    border-radius: 6px;
-    flex-shrink: 0;
+  .for-item .icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--green);
+    color: #FFF;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #FFF;
-    transition: all 0.15s ease;
+    flex-shrink: 0;
     margin-top: 2px;
   }
-  .bump.selected .bump-checkbox {
-    background: var(--green);
-    border-color: var(--green);
+  .for-item .text { font-size: 16px; color: var(--ink); line-height: 1.5; }
+  .for-item .text strong { font-weight: 600; }
+
+  .axes { margin-top: 32px; display: grid; gap: 10px; }
+  .axis {
+    background: #FFF;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
-  .bump-checkbox svg { color: #FFF; opacity: 0; transition: opacity 0.15s; }
-  .bump.selected .bump-checkbox svg { opacity: 1; }
-  .bump-text { flex: 1; }
-  .bump-text h4 {
-    font-size: 15px;
-    font-weight: 800;
-    margin-bottom: 4px;
-    line-height: 1.3;
-    color: var(--ink);
-  }
-  .bump-text p {
-    font-size: 13px;
-    color: var(--ink-soft);
-    margin: 0;
-    line-height: 1.5;
-  }
-  .bump-prices {
-    text-align: right;
+  .axis .name { font-size: 15px; font-weight: 500; color: var(--ink); }
+  .axis .count {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink-mute);
+    background: var(--bg-soft);
+    padding: 4px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.5px;
     white-space: nowrap;
   }
-  .bump-prices .old {
+
+  .includes { list-style: none; margin-top: 28px; }
+  .includes li {
+    font-size: 16px;
+    color: var(--ink);
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+  }
+  .includes li:first-child { border-top: 1px solid var(--line); }
+  .includes li svg { flex-shrink: 0; color: var(--green); margin-top: 5px; }
+
+  .price-block {
+    background: #FFF;
+    border: 2px solid var(--ink);
+    border-radius: 14px;
+    padding: 36px 28px;
+    margin-top: 28px;
+    text-align: center;
+    position: relative;
+  }
+  .price-tag {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--yellow);
+    color: var(--ink);
     font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+  .price-old {
+    font-size: 18px;
     color: var(--ink-mute);
     text-decoration: line-through;
-    display: block;
+    margin-bottom: 4px;
   }
-  .bump-prices .new {
+  .price-new {
     font-family: 'Fraunces', serif;
-    font-size: 20px;
-    font-weight: 800;
+    font-size: 64px;
+    font-weight: 700;
+    letter-spacing: -2px;
+    line-height: 1;
     color: var(--ink);
+    margin-bottom: 8px;
   }
-  .bump.selected .bump-prices .new { color: var(--green-dark); }
-
-  /* ===== RESUMO ===== */
-  .summary-title {
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+  .price-desc {
+    font-size: 14px;
     color: var(--ink-mute);
-    margin-bottom: 12px;
+    margin-bottom: 28px;
   }
-  .item {
+
+  .guarantee {
+    background: #F0FDF4;
+    border: 2px solid #BBF7D0;
+    border-radius: 14px;
+    padding: 28px;
+    margin-top: 28px;
     display: flex;
-    justify-content: space-between;
+    gap: 18px;
     align-items: flex-start;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--line-soft);
-    gap: 16px;
-    font-size: 14px;
   }
-  .item:last-of-type { border-bottom: none; }
-  .item .name { color: var(--ink); font-weight: 500; }
-  .item .price { font-weight: 700; white-space: nowrap; }
-  .totals {
-    border-top: 2px solid var(--ink);
-    margin-top: 6px;
-    padding-top: 14px;
-  }
-  .total-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 4px 0;
-    font-size: 14px;
-  }
-  .total-row .lbl { color: var(--ink-soft); }
-  .total-row .val { font-weight: 600; }
-  .total-row.discount .val { color: var(--green-dark); }
-  .total-row.big {
-    margin-top: 8px;
-    padding-top: 12px;
-    border-top: 1px solid var(--line);
-  }
-  .total-row.big .lbl {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--ink);
-  }
-  .total-row.big .val {
-    font-family: 'Fraunces', serif;
-    font-size: 30px;
-    font-weight: 800;
-    color: var(--ink);
-    letter-spacing: -1px;
-  }
-
-  /* ===== CUPOM ===== */
-  .coupon-toggle {
-    background: none;
-    border: none;
-    font-family: inherit;
-    font-size: 13px;
-    color: var(--ink-soft);
-    cursor: pointer;
-    padding: 10px 0;
-    text-decoration: underline;
-    text-decoration-color: var(--ink-mute);
-    text-underline-offset: 3px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-weight: 500;
-  }
-  .coupon-toggle:hover { color: var(--ink); }
-  .coupon-box { display: none; gap: 8px; margin-top: 8px; }
-  .coupon-box.show { display: flex; }
-  .coupon-box input {
-    flex: 1;
-    font-family: inherit;
-    font-size: 14px;
-    padding: 11px 14px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 600;
-  }
-  .coupon-box input:focus { outline: none; border-color: var(--ink); }
-  .coupon-box button {
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: 700;
-    padding: 0 18px;
-    background: var(--ink);
-    color: #FFF;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  .coupon-box button:hover { background: #000; }
-  .coupon-msg {
-    font-size: 12px;
-    margin-top: 8px;
-    display: none;
-    font-weight: 500;
-  }
-  .coupon-msg.show { display: block; }
-  .coupon-msg.ok { color: var(--green-dark); }
-  .coupon-msg.err { color: var(--red); }
-
-  /* ===== FORM ===== */
-  .form-title {
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--ink-mute);
-    margin-bottom: 14px;
-  }
-  .field { margin-bottom: 14px; position: relative; }
-  .field label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--ink-soft);
-    margin-bottom: 6px;
-  }
-  .field label .status {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--green);
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-  .field.valid label .status { opacity: 1; }
-  .field input {
-    width: 100%;
-    font-family: inherit;
-    font-size: 16px;
-    color: var(--ink);
-    padding: 13px 15px;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    background: #FFF;
-    transition: border-color 0.15s, box-shadow 0.15s;
-  }
-  .field input:focus {
-    outline: none;
-    border-color: var(--ink);
-    box-shadow: 0 0 0 3px rgba(24,24,27,0.08);
-  }
-  .field.invalid input {
-    border-color: var(--red);
-    background: var(--red-soft);
-  }
-  .field .error {
-    font-size: 12px;
-    color: var(--red);
-    margin-top: 4px;
-    display: none;
-    font-weight: 500;
-  }
-  .field.invalid .error { display: block; }
-
-  .btn {
-    width: 100%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+  .guarantee .seal {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
     background: var(--green);
     color: #FFF;
-    font-family: inherit;
-    font-size: 16px;
-    font-weight: 800;
-    padding: 18px 24px;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.15s ease;
-    box-shadow: 0 5px 0 var(--green-dark);
-    letter-spacing: -0.2px;
-    margin-top: 12px;
-    text-transform: uppercase;
-  }
-  .btn:hover { transform: translateY(2px); box-shadow: 0 3px 0 var(--green-dark); }
-  .btn:active { transform: translateY(5px); box-shadow: 0 0 0 var(--green-dark); }
-  .btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
-  .btn .spinner {
-    width: 16px;
-    height: 16px;
-    border: 2px solid rgba(255,255,255,0.4);
-    border-top-color: #FFF;
-    border-radius: 50%;
-    animation: spin 0.6s linear infinite;
-    display: none;
-  }
-  .btn.loading .spinner { display: block; }
-  .btn.loading .arrow { display: none; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  .note {
-    font-size: 12px;
-    color: var(--ink-mute);
-    text-align: center;
-    margin-top: 14px;
-    line-height: 1.5;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-  }
-  .note svg { color: var(--green); flex-shrink: 0; }
-
-  /* ===== PROVA SOCIAL ===== */
-  .social-proof {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 18px;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    margin-bottom: 16px;
-  }
-  .avatars {
-    display: flex;
     flex-shrink: 0;
   }
-  .avatars .av {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    border: 2px solid #FFF;
-    margin-left: -8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
+  .guarantee h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
     font-weight: 700;
-    color: #FFF;
-  }
-  .avatars .av:first-child { margin-left: 0; }
-  .av.a { background: #6366F1; }
-  .av.b { background: #EC4899; }
-  .av.c { background: #F59E0B; }
-  .av.d { background: #10B981; }
-  .social-proof .text {
-    font-size: 13px;
-    color: var(--ink-soft);
-    line-height: 1.4;
-  }
-  .social-proof .text strong { color: var(--ink); font-weight: 700; }
-
-  /* ===== DEPOIMENTOS ===== */
-  .testimonials {
-    display: grid;
-    gap: 10px;
-    margin-bottom: 16px;
-  }
-  .testimonial {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 14px 16px;
-  }
-  .testimonial .stars {
-    color: #F59E0B;
-    font-size: 13px;
     margin-bottom: 6px;
-    letter-spacing: 1px;
+    letter-spacing: -0.3px;
+    color: var(--ink);
   }
-  .testimonial .quote {
-    font-size: 13px;
+  .guarantee p {
+    font-size: 15px;
     color: var(--ink-soft);
-    line-height: 1.5;
-    margin-bottom: 8px;
-  }
-  .testimonial .author {
-    font-size: 11px;
-    color: var(--ink-mute);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    margin: 0;
+    line-height: 1.55;
   }
 
-  /* ===== SELOS ===== */
-  .seals {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin: 20px 0;
-  }
-  .seal-item {
-    background: var(--surface);
+  .faq { margin-top: 28px; }
+  .faq details {
+    background: #FFF;
     border: 1px solid var(--line);
     border-radius: 10px;
-    padding: 14px 10px;
-    text-align: center;
+    padding: 18px 22px;
+    margin-bottom: 10px;
   }
-  .seal-item svg {
-    color: var(--green);
-    margin: 0 auto 6px;
-  }
-  .seal-item span {
-    display: block;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.4px;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    line-height: 1.3;
-  }
-
-  /* ===== FAQ ===== */
-  .faq-mini {
-    margin-top: 20px;
-  }
-  .faq-mini details {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 14px 18px;
-    margin-bottom: 8px;
-  }
-  .faq-mini summary {
-    font-size: 14px;
+  .faq summary {
+    font-size: 16px;
     font-weight: 600;
     color: var(--ink);
     cursor: pointer;
@@ -701,199 +327,63 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
   }
-  .faq-mini summary::-webkit-details-marker { display: none; }
-  .faq-mini summary::after {
-    content: '+';
-    font-size: 20px;
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary .plus {
+    flex-shrink: 0;
     color: var(--ink-mute);
-    font-weight: 300;
-    transition: transform 0.2s;
-    line-height: 1;
+    transition: transform 0.2s ease;
   }
-  .faq-mini details[open] summary::after { transform: rotate(45deg); }
-  .faq-mini details p {
-    margin-top: 10px;
-    font-size: 13px;
+  .faq details[open] summary .plus { transform: rotate(45deg); }
+  .faq details p {
+    margin-top: 12px;
+    font-size: 15px;
     color: var(--ink-soft);
     line-height: 1.6;
   }
 
-  /* ===== PIX DISPLAY ===== */
-  .pix-box { display: none; }
-  .pix-box.show { display: block; }
-  .pix-box h2 {
-    font-family: 'Fraunces', serif;
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 4px;
-    text-align: center;
+  .seals {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 28px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
   }
-  .pix-box .sub2 {
-    font-size: 14px;
-    color: var(--ink-soft);
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  .pix-total-box {
-    background: var(--green-soft);
-    border: 1px solid #BBF7D0;
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 18px;
-    text-align: center;
-  }
-  .pix-total-box .lbl {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    color: var(--green-dark);
-    margin-bottom: 4px;
-  }
-  .pix-total-box .val {
-    font-family: 'Fraunces', serif;
-    font-size: 32px;
-    font-weight: 800;
-    color: var(--ink);
-    letter-spacing: -1px;
-  }
-  .qr-container {
-    background: #FFF;
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 18px;
+  .seal-item {
     display: flex;
-    justify-content: center;
-    margin-bottom: 16px;
-  }
-  .qr-container img {
-    display: block;
-    width: 200px;
-    height: 200px;
-  }
-  .copy-box {
-    background: var(--surface-soft);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 12px 14px;
-    font-family: 'SF Mono', 'Courier New', monospace;
-    font-size: 11px;
-    color: var(--ink-soft);
-    word-break: break-all;
-    text-align: left;
-    max-height: 90px;
-    overflow-y: auto;
-    margin-bottom: 10px;
-    line-height: 1.5;
-  }
-  .copy-btn {
-    width: 100%;
-    display: inline-flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     gap: 8px;
-    background: var(--ink);
-    color: #FFF;
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 700;
-    padding: 14px 20px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.15s;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .copy-btn:hover { background: #000; }
-  .copy-btn.copied { background: var(--green); }
-
-  .status {
-    margin-top: 18px;
-    padding: 14px 16px;
-    border-radius: 10px;
-    font-size: 13px;
-    font-weight: 600;
     text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
   }
-  .status.waiting {
-    background: var(--yellow-bg);
-    color: #854D0E;
-    border: 1px solid #FDE68A;
-  }
-  .status.waiting::before {
-    content: '';
-    width: 12px;
-    height: 12px;
-    border: 2px solid #854D0E;
-    border-top-color: transparent;
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-  }
-
-  /* ===== NOTIFICAÇÕES AO VIVO ===== */
-  .live-notification {
-    position: fixed;
-    bottom: 100px;
-    left: 20px;
-    background: #FFF;
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-    z-index: 90;
-    max-width: 320px;
-    transform: translateY(120%);
-    opacity: 0;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    pointer-events: none;
-  }
-  .live-notification.show {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  .live-notification .av {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: 700;
-    color: #FFF;
-  }
-  .live-notification .info { flex: 1; min-width: 0; }
-  .live-notification .info .name {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--ink);
-    line-height: 1.3;
-  }
-  .live-notification .info .action {
-    font-size: 12px;
-    color: var(--ink-soft);
-    line-height: 1.3;
-  }
-  .live-notification .info .time {
-    font-size: 10px;
+  .seal-item svg { color: var(--ink-soft); }
+  .seal-item span {
+    font-size: 11px;
     color: var(--ink-mute);
-    margin-top: 2px;
-    font-weight: 500;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    line-height: 1.3;
+    text-transform: uppercase;
   }
 
-  /* ===== STICKY BAR ===== */
-  .sticky-bar {
+  .final {
+    background: var(--bg-dark);
+    color: #FFF;
+    padding: 72px 0;
+    text-align: center;
+  }
+  .final h2 { color: #FFF; font-size: 36px; margin-bottom: 16px; }
+  .final p {
+    color: #A1A1AA;
+    max-width: 440px;
+    margin: 0 auto 32px;
+    font-size: 17px;
+  }
+  .final .btn-note { color: #71717A; }
+
+  .sticky {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -904,78 +394,57 @@
     display: none;
     align-items: center;
     gap: 12px;
-    z-index: 80;
-    box-shadow: 0 -4px 24px rgba(0,0,0,0.08);
+    z-index: 100;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
   }
-  .sticky-bar .info { flex: 1; min-width: 0; }
-  .sticky-bar .info .lbl {
-    font-size: 11px;
-    color: var(--ink-mute);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .sticky-bar .info .val {
-    font-family: 'Fraunces', serif;
-    font-size: 22px;
-    font-weight: 800;
+  .sticky .info { flex: 1; min-width: 0; }
+  .sticky .info .p {
+    font-size: 15px;
+    font-weight: 700;
     color: var(--ink);
-    letter-spacing: -0.5px;
-    line-height: 1.1;
+    line-height: 1.2;
   }
-  .sticky-bar .btn-mini {
-    background: var(--green);
-    color: #FFF;
-    font-family: inherit;
+  .sticky .info .l { font-size: 12px; color: var(--ink-mute); }
+  .sticky .btn {
+    padding: 14px 20px;
     font-size: 14px;
-    font-weight: 800;
-    padding: 13px 22px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
     box-shadow: 0 4px 0 var(--green-dark);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    width: auto;
+    max-width: none;
     white-space: nowrap;
   }
-  .sticky-bar .btn-mini:hover { transform: translateY(2px); box-shadow: 0 2px 0 var(--green-dark); }
 
-  /* ===== FOOTER ===== */
   footer {
-    padding: 32px 0;
-    text-align: center;
-    font-size: 12px;
+    padding: 40px 0;
+    font-size: 13px;
     color: var(--ink-mute);
-    border-top: 1px solid var(--line);
-    margin-top: 40px;
+    text-align: center;
   }
   footer a { color: var(--ink-mute); text-decoration: none; margin: 0 8px; }
   footer a:hover { color: var(--ink); }
-  footer .disclaimer {
-    max-width: 500px;
-    margin: 16px auto 0;
-    font-size: 11px;
-    line-height: 1.6;
+  .disclaimer {
+    max-width: 600px;
+    margin: 24px auto 0;
+    font-size: 12px;
     color: var(--ink-mute);
+    line-height: 1.6;
   }
 
-  /* ===== RESPONSIVO ===== */
   @media (max-width: 600px) {
-    h1 { font-size: 22px; }
-    .card { padding: 22px 18px; }
-    .qr-container img { width: 180px; height: 180px; }
-    .bump-body { flex-wrap: wrap; }
-    .bump-prices { width: 100%; text-align: right; margin-top: 8px; }
-    .sticky-bar { display: flex; }
-    body { padding-bottom: 80px; }
-    .seals { grid-template-columns: 1fr; }
-    .seal-item { display: flex; align-items: center; gap: 10px; padding: 12px 14px; text-align: left; }
-    .seal-item svg { margin: 0; }
-    .topbar { font-size: 12px; padding: 8px 12px; gap: 8px; }
-    .topbar .divider { display: none; }
-    .live-notification { left: 12px; right: 12px; max-width: none; bottom: 90px; }
-    .product-preview { padding: 14px; gap: 12px; }
-    .product-thumb { width: 54px; height: 72px; }
+    body { padding-bottom: 76px; }
+    h1 { font-size: 32px; letter-spacing: -1px; }
+    h2 { font-size: 26px; letter-spacing: -0.6px; }
+    .sub { font-size: 17px; }
+    p { font-size: 16px; }
+    section { padding: 48px 0; }
+    .hero { padding: 40px 0 36px; }
+    .price-new { font-size: 48px; }
+    .final h2 { font-size: 28px; }
+    .btn { font-size: 16px; padding: 18px 28px; }
+    .sticky { display: flex; }
+    .guarantee { flex-direction: column; text-align: center; align-items: center; }
+    .pain-list li { font-size: 16px; padding: 16px; }
+    .seals { grid-template-columns: repeat(2, 1fr); gap: 20px; }
   }
 </style>
 </head>
@@ -983,310 +452,242 @@
 
 <!-- TOP BAR -->
 <div class="topbar">
-  <div class="item">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.39 7.36H22l-6.18 4.5L18.18 21 12 16.27 5.82 21l2.18-7.14L1.82 9.36h7.61L12 2z"/></svg>
-    <span><strong>+2.847</strong> estudantes já baixaram</span>
-  </div>
-  <span class="divider">|</span>
-  <div class="item">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-    <span>Liberação em <strong>segundos</strong></span>
-  </div>
+  Oferta de lançamento · <strong>R$ 3,49</strong> · por tempo limitado
 </div>
 
-<!-- HEADER -->
-<header>
+<!-- HERO -->
+<header class="hero">
   <div class="wrap">
-    <div class="brand">Caderno ENEM</div>
-    <div class="secure">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      Ambiente seguro
+    <span class="eyebrow">ENEM 2026 · PDF · Acesso Imediato</span>
+    <h1>Método ENEM: <span class="hl">Guia Completo de Redação</span></h1>
+    <p class="sub">30 temas com tese pronta, <strong>10 redações nota 1000 comentadas</strong> e 20 repertórios legitimados. Por menos que um café.</p>
+
+    <div class="btn-wrap">
+      <a href="/checkout" class="btn">
+        QUERO O GUIA POR R$ 3,49
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <p class="btn-note">Pagamento via PIX · <strong>Garantia de 7 dias</strong> · Liberação na hora</p>
     </div>
   </div>
 </header>
 
-<!-- PROGRESS -->
-<div class="progress-bar">
+<!-- DOR -->
+<section>
   <div class="wrap">
-    <div class="progress-steps">
-      <div class="bar-fill" id="progress-fill"></div>
-      <div class="progress-step active" id="step-1">
-        <div class="circle">1</div>
-        <div class="label">Dados</div>
-      </div>
-      <div class="progress-step" id="step-2">
-        <div class="circle">2</div>
-        <div class="label">Pagamento</div>
-      </div>
-      <div class="progress-step" id="step-3">
-        <div class="circle">3</div>
-        <div class="label">Acesso</div>
-      </div>
-    </div>
+    <div class="section-label">Você se identifica?</div>
+    <h2>Se você já pensou isso, esse guia é pra você.</h2>
+    <ul class="pain-list">
+      <li>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        Será que estou estudando os temas certos?
+      </li>
+      <li>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        Não sei montar tese nem organizar argumentos.
+      </li>
+      <li>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        Tenho repertório fraco e não sei o que citar.
+      </li>
+      <li>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        Não entendo como o corretor dá nota 1000.
+      </li>
+    </ul>
   </div>
-</div>
+</section>
 
-<main>
+<!-- SOLUÇÃO -->
+<section class="alt">
   <div class="wrap">
+    <div class="section-label">A solução</div>
+    <h2>Um material completo, <span class="hl">não só uma lista.</span></h2>
+    <p>Não é uma lista solta de temas. É um <strong>método estruturado</strong> com tese pronta, argumentos fundamentados e proposta de intervenção completa para cada um dos 30 temas. Mais: 10 redações nota 1000 comentadas competência por competência e um guia de repertório com 20 autores legitimados.</p>
+  </div>
+</section>
 
-    <!-- ETAPA 1: FORM -->
-    <div id="form-step">
+<!-- O QUE TEM DENTRO -->
+<section>
+  <div class="wrap">
+    <div class="section-label">O que você recebe</div>
+    <h2>Tudo isso num único PDF.</h2>
+    <ul class="includes">
+      <li>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span><strong>30 temas</strong> com tese, 2 argumentos e proposta de intervenção completa</span>
+      </li>
+      <li>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span><strong>10 redações nota 1000</strong> comentadas competência por competência</span>
+      </li>
+      <li>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span><strong>Guia de repertório</strong> com 20 autores legitimados (Krenak, Mbembe, Federici, Djamila Ribeiro)</span>
+      </li>
+      <li>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span><strong>Histórico dos temas reais</strong> do ENEM 2016-2025</span>
+      </li>
+      <li>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span><strong>Guia da proposta de intervenção</strong> com os 5 elementos da C5</span>
+      </li>
+      <li>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span><strong>20 conectivos</strong> + 5 erros fatais que zeram a redação</span>
+      </li>
+    </ul>
+  </div>
+</section>
 
-      <!-- ESCASSEZ -->
-      <div class="scarcity">
-        <div class="text">
-          <strong>Oferta de lançamento</strong>
-          O preço sobe em breve
-        </div>
-        <div class="timer" id="timer">15:00</div>
-      </div>
-
-      <!-- PROVA SOCIAL -->
-      <div class="social-proof">
-        <div class="avatars">
-          <div class="av a">MS</div>
-          <div class="av b">JC</div>
-          <div class="av c">AL</div>
-          <div class="av d">+</div>
-        </div>
-        <div class="text">
-          <strong>2.847 estudantes</strong> já garantiram o material nesse mês
-        </div>
-      </div>
-
-      <!-- DEPOIMENTOS -->
-      <div class="testimonials">
-        <div class="testimonial">
-          <div class="stars">★★★★★</div>
-          <div class="quote">"Eu travava toda vez que ia escrever. Com as teses prontas dos 30 temas, já sei como começar cada redação."</div>
-          <div class="author">Marina S. · Fortaleza</div>
-        </div>
-        <div class="testimonial">
-          <div class="stars">★★★★★</div>
-          <div class="quote">"As 10 redações comentadas mostraram exatamente onde eu perdia ponto. Vale cada centavo."</div>
-          <div class="author">João C. · Recife</div>
-        </div>
-      </div>
-
-      <!-- CARD PRINCIPAL -->
-      <div class="card">
-        <h1>Finalize seu pedido</h1>
-        <p class="sub">Confira o resumo, adicione o complemento e gere o PIX.</p>
-
-        <!-- PREVIEW DO PRODUTO -->
-        <div class="product-preview">
-          <div class="product-thumb">
-            <img src="/img/capa-metodo.png" alt="Método ENEM: Guia Completo de Redação">
-          </div>
-          <div class="product-info">
-            <h3>Método ENEM: Guia Completo de Redação</h3>
-            <div class="meta">PDF · 30 temas + 10 redações comentadas + 20 repertórios</div>
-            <div class="tags">
-              <span class="tag green">ENEM 2026</span>
-              <span class="tag">Atualizado</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- ORDER BUMP -->
-        <div class="bump" id="bump">
-          <div class="bump-body">
-            <div class="bump-checkbox">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <div class="bump-text">
-              <h4>Caderno de Treino ENEM</h4>
-              <p>30 folhas de redação + checklist de correção + guia de autoavaliação. Ferramenta completa pra você treinar.</p>
-            </div>
-            <div class="bump-prices">
-              <span class="old">R$ 19,90</span>
-              <span class="new">+ R$ 9,90</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- RESUMO -->
-        <div class="summary-title">Resumo do pedido</div>
-        <div id="items-list">
-          <div class="item">
-            <span class="name">Método ENEM: Guia Completo de Redação</span>
-            <span class="price">R$ 3,49</span>
-          </div>
-        </div>
-
-        <!-- CUPOM -->
-        <button type="button" class="coupon-toggle" id="coupon-toggle">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-          Tenho um cupom de desconto
-        </button>
-        <div class="coupon-box" id="coupon-box">
-          <input type="text" id="coupon-input" placeholder="CUPOM" maxlength="20">
-          <button type="button" id="coupon-apply">Aplicar</button>
-        </div>
-        <div class="coupon-msg" id="coupon-msg"></div>
-
-        <!-- TOTAIS -->
-        <div class="totals">
-          <div class="total-row">
-            <span class="lbl">Subtotal</span>
-            <span class="val" id="subtotal">R$ 3,49</span>
-          </div>
-          <div class="total-row discount" id="discount-row" style="display: none;">
-            <span class="lbl">Desconto</span>
-            <span class="val" id="discount-value">- R$ 0,00</span>
-          </div>
-          <div class="total-row big">
-            <span class="lbl">Total</span>
-            <span class="val" id="total">R$ 3,49</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- FORM -->
-      <div class="card">
-        <div class="form-title">Seus dados</div>
-        <form id="pix-form" novalidate>
-          <div class="field" id="field-name">
-            <label for="name">
-              Nome completo
-              <span class="status">✓</span>
-            </label>
-            <input type="text" id="name" required autocomplete="name" placeholder="Como no seu documento">
-            <div class="error">Digite seu nome completo</div>
-          </div>
-
-          <div class="field" id="field-email">
-            <label for="email">
-              E-mail
-              <span class="status">✓</span>
-            </label>
-            <input type="email" id="email" required autocomplete="email" placeholder="voce@email.com">
-            <div class="error">Digite um e-mail válido</div>
-          </div>
-
-          <div class="field" id="field-phone">
-            <label for="phone">
-              WhatsApp
-              <span class="status">✓</span>
-            </label>
-            <input type="tel" id="phone" required autocomplete="tel" placeholder="(00) 00000-0000">
-            <div class="error">Digite um WhatsApp válido</div>
-          </div>
-
-          <div class="field" id="field-document">
-            <label for="document">
-              CPF
-              <span class="status">✓</span>
-            </label>
-            <input type="text" id="document" required inputmode="numeric" placeholder="000.000.000-00">
-            <div class="error">Digite um CPF válido</div>
-          </div>
-
-          <button type="submit" class="btn" id="submit-btn">
-            <span class="spinner"></span>
-            GERAR PIX DE <span id="btn-total">R$ 3,49</span>
-            <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </button>
-
-          <p class="note">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            Seus dados estão protegidos. Não enviamos spam.
-          </p>
-        </form>
-      </div>
-
-      <!-- SELOS -->
-      <div class="seals">
-        <div class="seal-item">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-          <span>Garantia<br>7 dias</span>
-        </div>
-        <div class="seal-item">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          <span>Acesso<br>imediato</span>
-        </div>
-        <div class="seal-item">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <span>Pagamento<br>seguro</span>
-        </div>
-      </div>
-
-      <!-- FAQ MINI -->
-      <div class="faq-mini">
-        <details>
-          <summary>O que exatamente tem no PDF?</summary>
-          <p>30 temas com tese, argumentos e proposta + 10 redações nota 1000 comentadas + 20 repertórios legitimados + histórico dos temas 2016-2025 + guia da C5 + conectivos + erros que zeram. Tudo num único PDF.</p>
-        </details>
-        <details>
-          <summary>Como recebo o material?</summary>
-          <p>Assim que o PIX for confirmado, a página libera o download automaticamente. Também enviamos o link para o seu e-mail.</p>
-        </details>
-        <details>
-          <summary>E se eu não gostar?</summary>
-          <p>Você tem 7 dias de garantia total. Devolvemos 100% do valor, sem perguntas.</p>
-        </details>
-      </div>
-
+<!-- EIXOS COBERTOS -->
+<section class="alt">
+  <div class="wrap">
+    <div class="section-label">5 eixos cobertos</div>
+    <h2>Os temas estão organizados assim.</h2>
+    <div class="axes">
+      <div class="axis"><span class="name">Saúde e Qualidade de Vida</span><span class="count">06 TEMAS</span></div>
+      <div class="axis"><span class="name">Educação, Tecnologia e Informação</span><span class="count">06 TEMAS</span></div>
+      <div class="axis"><span class="name">Sociedade, Direitos e Cidadania</span><span class="count">06 TEMAS</span></div>
+      <div class="axis"><span class="name">Meio Ambiente e Sustentabilidade</span><span class="count">06 TEMAS</span></div>
+      <div class="axis"><span class="name">Histórico INEP 2016-2025</span><span class="count">06 TEMAS</span></div>
     </div>
+  </div>
+</section>
 
-    <!-- ETAPA 2: PIX -->
-    <div class="pix-box" id="pix-step">
-      <div class="card">
-        <h2>Pague com PIX para liberar</h2>
-        <p class="sub2">Abra o app do seu banco, escaneie o QR code ou copie o código.</p>
+<!-- PARA QUEM É -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Para quem é</div>
+    <h2>Feito para quem vai encarar o ENEM esse ano.</h2>
+    <div class="for-who">
+      <div class="for-item">
+        <div class="icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="text">Para quem <strong>não tem tempo</strong> de estudar 100 temas e quer focar no que importa.</div>
+      </div>
+      <div class="for-item">
+        <div class="icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="text">Para quem <strong>trava na hora de escrever</strong> e não sabe montar tese ou argumento.</div>
+      </div>
+      <div class="for-item">
+        <div class="icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="text">Para quem quer <strong>entender como o corretor dá nota 1000</strong>, competência por competência.</div>
+      </div>
+      <div class="for-item">
+        <div class="icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="text">Para quem quer <strong>chegar na prova com repertório pronto</strong> na cabeça.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <div class="pix-total-box">
-          <div class="lbl">Total a pagar</div>
-          <div class="val" id="pix-total-value">R$ 3,49</div>
-        </div>
+<!-- PREÇO -->
+<section id="comprar">
+  <div class="wrap">
+    <div class="section-label">Investimento</div>
+    <h2>Menos que um café. <span class="hl">Mais que um palpite.</span></h2>
+    <p>Você não precisa estudar tudo. Precisa estudar <strong>o que importa</strong>.</p>
 
-        <div class="qr-container">
-          <img id="qr-img" alt="QR Code PIX" src="">
-        </div>
-
-        <div class="copy-box" id="copy-code"></div>
-        <button class="copy-btn" id="copy-btn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          Copiar código PIX
-        </button>
-
-        <div class="status waiting" id="status-box">
-          Aguardando confirmação do pagamento...
-        </div>
-
-        <p class="note" style="margin-top: 16px;">
-          Após o pagamento, a liberação é automática.<br>
-          Não feche esta página.
-        </p>
+    <div class="price-block">
+      <span class="price-tag">Oferta de lançamento</span>
+      <div class="price-old">De R$ 47,00</div>
+      <div class="price-new">R$ 3,49</div>
+      <div class="price-desc">Pagamento único via PIX · Liberação imediata</div>
+      <div class="btn-wrap">
+        <a href="/checkout" class="btn">
+          QUERO O GUIA AGORA
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <p class="btn-note">Ambiente seguro · <strong>Garantia de 7 dias</strong></p>
       </div>
     </div>
 
+    <div class="seals">
+      <div class="seal-item">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span>Pagamento<br>seguro</span>
+      </div>
+      <div class="seal-item">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <span>Acesso<br>imediato</span>
+      </div>
+      <div class="seal-item">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Garantia<br>7 dias</span>
+      </div>
+      <div class="seal-item">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>Suporte<br>por e-mail</span>
+      </div>
+    </div>
   </div>
-</main>
+</section>
 
-<!-- STICKY BAR (mobile) -->
-<div class="sticky-bar" id="sticky-bar">
-  <div class="info">
-    <div class="lbl">Total</div>
-    <div class="val" id="sticky-total">R$ 3,49</div>
+<!-- GARANTIA -->
+<section class="alt">
+  <div class="wrap">
+    <div class="guarantee">
+      <div class="seal">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+      </div>
+      <div>
+        <h3>Garantia incondicional de 7 dias</h3>
+        <p>Se por qualquer motivo você não gostar do material, basta enviar um e-mail em até 7 dias e devolvemos <strong>100% do valor</strong>. Sem perguntas, sem burocracia.</p>
+      </div>
+    </div>
   </div>
-  <button class="btn-mini" id="sticky-btn">Comprar</button>
-</div>
+</section>
 
-<!-- NOTIFICAÇÃO AO VIVO -->
-<div class="live-notification" id="live-notif">
-  <div class="av" id="notif-av">MS</div>
-  <div class="info">
-    <div class="name" id="notif-name">Marina S.</div>
-    <div class="action" id="notif-action">acabou de comprar o método</div>
-    <div class="time" id="notif-time">há 2 minutos</div>
+<!-- FAQ -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Dúvidas frequentes</div>
+    <h2>Ainda com dúvida? A gente responde.</h2>
+    <div class="faq">
+      <details>
+        <summary>O que exatamente tem no PDF?<svg class="plus" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></summary>
+        <p>30 temas com tese, argumentos e proposta + 10 redações nota 1000 comentadas + 20 repertórios legitimados + histórico dos temas 2016-2025 + guia da C5 + conectivos + erros que zeram. Tudo num único PDF.</p>
+      </details>
+      <details>
+        <summary>Como recebo o material?<svg class="plus" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></summary>
+        <p>Assim que o PIX for confirmado, a página libera o download automaticamente. Também enviamos o link para o seu e-mail.</p>
+      </details>
+      <details>
+        <summary>Serve para quem vai fazer o ENEM 2026?<svg class="plus" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></summary>
+        <p>Sim. Os temas são baseados nas tendências atuais e no histórico real das provas anteriores.</p>
+      </details>
+      <details>
+        <summary>Preciso imprimir?<svg class="plus" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></summary>
+        <p>Não. Você pode ler no celular, tablet ou computador. Se preferir imprimir, também funciona.</p>
+      </details>
+      <details>
+        <summary>E se eu não gostar?<svg class="plus" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></summary>
+        <p>Você tem 7 dias de garantia total. Devolvemos 100% do valor, sem perguntas.</p>
+      </details>
+    </div>
   </div>
-</div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final">
+  <div class="wrap">
+    <h2>Comece a estudar o que importa hoje.</h2>
+    <p>Por R$ 3,49, você tem em mãos o método completo de redação que pode mudar sua nota.</p>
+    <div class="btn-wrap">
+      <a href="/checkout" class="btn">
+        QUERO O GUIA POR R$ 3,49
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <p class="btn-note">Pagamento via PIX · Garantia de 7 dias</p>
+    </div>
+  </div>
+</section>
 
 <footer>
   <div class="wrap">
-    <div>Caderno ENEM</div>
-    <p style="margin-top: 8px;">
+    <p style="font-size: 14px; color: var(--ink-soft); font-weight: 600; margin-bottom: 12px;">Caderno ENEM</p>
+    <p>
       <a href="/privacidade">Privacidade</a> ·
       <a href="/termos">Termos</a> ·
       <a href="/contato">Contato</a>
@@ -1295,6 +696,16 @@
   </div>
 </footer>
 
-<script src="/js/checkout.js"></script>
+<div class="sticky">
+  <div class="info">
+    <div class="p">R$ 3,49</div>
+    <div class="l">Método ENEM · Redação</div>
+  </div>
+  <a href="/checkout" class="btn">
+    COMPRAR
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+  </a>
+</div>
+
 </body>
 </html>
