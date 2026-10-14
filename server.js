@@ -334,25 +334,47 @@ app.delete('/api/admin/leads/:id', authenticate, async (req, res) => {
   } catch { return res.status(500).json({ error: 'Erro' }); }
 });
 
-// ============ DELIVER ============
+// ============ DELIVER (com log detalhado) ============
 app.post('/api/admin/orders/:id/deliver', authenticate, async (req, res) => {
   try {
     const o = await pool.query('SELECT * FROM orders WHERE id = $1', [req.params.id]);
-    if (o.rowCount === 0) return res.status(404).json({ error: 'Não encontrado' });
+    if (o.rowCount === 0) {
+      return res.status(404).json({ error: 'Pedido não encontrado' });
+    }
 
     const order = o.rows[0];
-    const { token, expiraEm } = await criarTokenEntrega(order.transaction_id, 7);
+
+    if (!order.transaction_id) {
+      return res.status(400).json({ error: 'Pedido sem transaction_id' });
+    }
+
+    let token, expiraEm;
+    try {
+      const result = await criarTokenEntrega(order.transaction_id, 7);
+      token = result.token;
+      expiraEm = result.expiraEm;
+    } catch (tokenErr) {
+      console.error('Erro ao criar token:', tokenErr.message);
+      return res.status(500).json({ error: 'Erro ao criar token: ' + tokenErr.message });
+    }
+
     await pool.query('UPDATE orders SET delivered_at = NOW() WHERE id = $1', [order.id]);
+
+    const baseUrl = String(BASE_URL).replace(/\/+$/, '');
 
     return res.json({
       success: true,
-      link: `${BASE_URL}/entrega/${token}`,
+      link: `${baseUrl}/entrega/${token}`,
       expiraEm,
       phone: order.phone,
       name: order.name,
-      items: order.items || []
+      items: order.items || [],
+      amount: order.amount
     });
-  } catch { return res.status(500).json({ error: 'Erro' }); }
+  } catch (err) {
+    console.error('Erro deliver completo:', err);
+    return res.status(500).json({ error: 'Erro: ' + err.message });
+  }
 });
 
 // ============ ENTREGA ============
