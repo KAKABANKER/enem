@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin</title>
+<title>Admin — Caderno ENEM</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -16,7 +16,6 @@
     --ink-soft: #52525B;
     --ink-mute: #A1A1AA;
     --line: #E7E5E4;
-    --line-soft: #F0EFEE;
     --green: #16A34A;
     --green-dark: #15803D;
     --green-soft: #F0FDF4;
@@ -32,38 +31,88 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: var(--bg); color: var(--ink);
-    font-size: 14px; line-height: 1.5;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
   }
   button { font-family: inherit; cursor: pointer; }
   svg { display: block; }
 
+  /* ============ LOGIN ============ */
   #login-view {
-    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 24px;
   }
   .login-card {
-    background: var(--surface); border: 1px solid var(--line);
-    border-radius: 16px; padding: 36px 28px; width: 100%; max-width: 400px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 36px 28px;
+    width: 100%;
+    max-width: 400px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 12px 40px rgba(0,0,0,0.04);
   }
-  .login-card .brand { font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 28px; }
-  .login-card h1 { font-family: 'Fraunces', serif; font-size: 24px; margin-bottom: 6px; letter-spacing: -0.5px; }
-  .login-card p { color: var(--ink-soft); font-size: 14px; margin-bottom: 24px; }
-  .field { margin-bottom: 14px; }
-  .field label { display: block; font-size: 12px; font-weight: 600; color: var(--ink-soft); margin-bottom: 6px; }
-  .field input {
-    width: 100%; font-family: inherit; font-size: 15px;
-    padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px;
-    background: #FFF; transition: border-color 0.15s, box-shadow 0.15s;
+  .login-card .brand {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    margin-bottom: 28px;
   }
-  .field input:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 3px rgba(24,24,27,0.08); }
+  .login-card h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+  }
+  .login-card p {
+    color: var(--ink-soft);
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+  .field { margin-bottom: 14px; }
+  .field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .field input {
+    width: 100%;
+    font-family: inherit;
+    font-size: 15px;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #FFF;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .field input:focus {
+    outline: none;
+    border-color: var(--ink);
+    box-shadow: 0 0 0 3px rgba(24,24,27,0.08);
+  }
+
   .btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    background: var(--ink); color: #FFF; font-size: 13px; font-weight: 700;
-    padding: 12px 18px; border: none; border-radius: 10px; width: 100%;
-    text-transform: uppercase; letter-spacing: 0.5px; transition: background 0.15s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--ink);
+    color: #FFF;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.15s;
   }
   .btn:hover { background: #000; }
   .btn:disabled { opacity: 0.6; cursor: not-allowed; }
@@ -71,85 +120,191 @@
   .btn.green:hover { background: var(--green-dark); }
   .btn.whats { background: var(--whats); }
   .btn.whats:hover { background: #1FAD52; }
-  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); text-transform: none; letter-spacing: 0; }
+  .btn.ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--line);
+    text-transform: none;
+    letter-spacing: 0;
+  }
   .btn.ghost:hover { background: var(--bg); }
+  .btn.red { background: var(--red); }
+  .btn.red:hover { background: #B91C1C; }
+  .btn.small {
+    width: auto;
+    padding: 9px 14px;
+    font-size: 12px;
+    text-transform: none;
+    letter-spacing: 0;
+  }
   .error-msg {
-    background: var(--red-soft); border: 1px solid #FECACA; color: #991B1B;
-    font-size: 13px; font-weight: 500; padding: 10px 14px;
-    border-radius: 8px; margin-bottom: 14px; display: none;
+    background: var(--red-soft);
+    border: 1px solid #FECACA;
+    color: #991B1B;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    display: none;
   }
   .error-msg.show { display: block; }
 
+  /* ============ PAINEL ============ */
   #panel-view { display: none; }
   #panel-view.show { display: block; }
 
   .topbar {
-    background: var(--ink); color: #FFF; padding: 14px 24px;
-    display: flex; justify-content: space-between; align-items: center;
-    position: sticky; top: 0; z-index: 50;
+    background: var(--ink);
+    color: #FFF;
+    padding: 14px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 50;
   }
-  .topbar .brand { font-family: 'Fraunces', serif; font-size: 16px; display: flex; align-items: center; gap: 10px; }
+  .topbar .brand {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
   .topbar .brand .dot {
-    width: 8px; height: 8px; background: var(--green); border-radius: 50%;
-    box-shadow: 0 0 8px rgba(22,163,74,0.6); animation: pulse 2s infinite;
+    width: 8px; height: 8px;
+    background: var(--green);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(22,163,74,0.6);
+    animation: pulse 2s infinite;
   }
-  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
-  .topbar .user { display: flex; align-items: center; gap: 16px; font-size: 13px; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  .topbar .user {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 13px;
+  }
   .topbar .user .name { opacity: 0.7; }
-  .topbar .logout { background: none; border: none; color: #FFF; font-size: 12px; text-decoration: underline; opacity: 0.7; padding: 0; }
+  .topbar .logout {
+    background: none;
+    border: none;
+    color: #FFF;
+    font-size: 12px;
+    text-decoration: underline;
+    opacity: 0.7;
+    padding: 0;
+  }
   .topbar .logout:hover { opacity: 1; }
 
-  .container { max-width: 1280px; margin: 0 auto; padding: 24px; }
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px;
+  }
 
-  .tabs { display: flex; gap: 4px; margin-bottom: 24px; border-bottom: 1px solid var(--line); overflow-x: auto; }
+  /* TABS */
+  .tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+    overflow-x: auto;
+  }
   .tab {
-    padding: 12px 18px; font-size: 14px; font-weight: 600; color: var(--ink-soft);
-    cursor: pointer; border: none; background: none;
-    border-bottom: 2px solid transparent; margin-bottom: -1px;
-    white-space: nowrap; display: flex; align-items: center; gap: 8px;
+    padding: 12px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    cursor: pointer;
+    border: none;
+    background: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
   .tab.active { color: var(--ink); border-bottom-color: var(--ink); }
   .tab:hover:not(.active) { color: var(--ink); }
   .tab .count {
-    background: var(--line); color: var(--ink-soft); font-size: 11px; font-weight: 700;
-    padding: 1px 7px; border-radius: 100px;
+    background: var(--line);
+    color: var(--ink-soft);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 1px 7px;
+    border-radius: 100px;
   }
   .tab.active .count { background: var(--ink); color: #FFF; }
 
   .tab-content { display: none; }
   .tab-content.active { display: block; }
 
+  /* STATS */
   .stats {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-    gap: 14px; margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
   }
   .stat {
-    background: var(--surface); border: 1px solid var(--line);
-    border-radius: 12px; padding: 18px 20px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 20px;
   }
   .stat .lbl {
-    font-size: 11px; font-weight: 700; letter-spacing: 0.8px;
-    text-transform: uppercase; color: var(--ink-mute); margin-bottom: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 8px;
   }
-  .stat .val { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.1; }
+  .stat .val {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
   .stat .val.green { color: var(--green); }
-  .stat .val.red { color: var(--red); }
   .stat .val.blue { color: var(--blue); }
   .stat .val.yellow { color: var(--yellow); }
   .stat .hint { font-size: 12px; color: var(--ink-mute); margin-top: 4px; }
 
+  /* CHART */
   .chart-card {
-    background: var(--surface); border: 1px solid var(--line);
-    border-radius: 12px; padding: 22px 24px; margin-bottom: 20px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 20px;
   }
   .chart-head {
-    display: flex; justify-content: space-between; align-items: baseline;
-    margin-bottom: 20px; flex-wrap: wrap; gap: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
   }
-  .chart-head h3 { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 700; }
+  .chart-head h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 700;
+  }
   .chart-head .total {
-    font-family: 'Fraunces', serif; font-size: 22px; font-weight: 700;
-    color: var(--green); letter-spacing: -0.5px;
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--green);
+    letter-spacing: -0.5px;
   }
   .chart-head .sub { font-size: 12px; color: var(--ink-mute); font-weight: 500; }
   .chart-wrap { width: 100%; overflow: visible; }
@@ -157,23 +312,47 @@
   .chart-bars rect { transition: all 0.2s ease; }
   .chart-bars rect:hover { opacity: 0.8; }
 
-  .filters { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
+  /* FILTROS */
+  .filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
   .filters input, .filters select {
-    font-family: inherit; font-size: 13px; padding: 10px 12px;
-    border: 1px solid var(--line); border-radius: 8px; background: #FFF;
+    font-family: inherit;
+    font-size: 13px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #FFF;
   }
   .filters input { flex: 1; min-width: 200px; }
   .filters input:focus, .filters select:focus { outline: none; border-color: var(--ink); }
 
-  .table-wrap { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  /* TABELA */
+  .table-wrap {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
   table { width: 100%; border-collapse: collapse; }
   th, td {
-    text-align: left; padding: 12px 14px; font-size: 13px;
-    border-bottom: 1px solid var(--line); vertical-align: middle;
+    text-align: left;
+    padding: 12px 14px;
+    font-size: 13px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: middle;
   }
   th {
-    background: var(--bg); font-size: 11px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.5px; color: var(--ink-mute);
+    background: var(--bg);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--ink-mute);
   }
   tbody tr:last-child td { border-bottom: none; }
   tbody tr:hover td { background: #FAFAF9; }
@@ -182,9 +361,14 @@
   td .amount { font-weight: 700; font-family: 'Fraunces', serif; font-size: 14px; white-space: nowrap; }
 
   .badge {
-    display: inline-block; font-size: 10px; font-weight: 700;
-    padding: 3px 8px; border-radius: 4px; text-transform: uppercase;
-    letter-spacing: 0.5px; white-space: nowrap;
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
   }
   .badge.paid { background: #DCFCE7; color: #166534; }
   .badge.pending { background: var(--yellow-soft); color: #92400E; }
@@ -197,11 +381,21 @@
 
   .actions { display: flex; gap: 6px; flex-wrap: wrap; }
   .action-btn {
-    font-size: 11px; font-weight: 700; padding: 6px 10px;
-    border: 1px solid var(--line); background: #FFF; border-radius: 6px;
-    color: var(--ink); white-space: nowrap; text-transform: uppercase;
-    letter-spacing: 0.3px; transition: all 0.15s;
-    display: inline-flex; align-items: center; gap: 4px; text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 10px;
+    border: 1px solid var(--line);
+    background: #FFF;
+    border-radius: 6px;
+    color: var(--ink);
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
   }
   .action-btn:hover { background: var(--bg); }
   .action-btn.green { background: var(--green); color: #FFF; border-color: var(--green); }
@@ -211,43 +405,139 @@
   .action-btn.red { background: #FFF; color: var(--red); border-color: #FECACA; }
   .action-btn.red:hover { background: var(--red-soft); }
 
-  .empty { padding: 48px 24px; text-align: center; color: var(--ink-mute); font-size: 14px; }
+  .empty {
+    padding: 48px 24px;
+    text-align: center;
+    color: var(--ink-mute);
+    font-size: 14px;
+  }
 
+  /* MODAIS */
   .modal-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.5);
-    display: none; align-items: center; justify-content: center;
-    padding: 20px; z-index: 200; backdrop-filter: blur(2px);
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 200;
+    backdrop-filter: blur(2px);
   }
   .modal-overlay.show { display: flex; }
   .modal {
-    background: #FFF; border-radius: 16px; padding: 28px;
-    max-width: 520px; width: 100%; max-height: 90vh; overflow-y: auto;
+    background: #FFF;
+    border-radius: 16px;
+    padding: 28px;
+    max-width: 520px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
     box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: modalIn 0.2s ease;
   }
-  .modal h2 { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.5px; }
-  .modal p.lede { color: var(--ink-soft); font-size: 14px; margin-bottom: 20px; }
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .modal h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+  }
+  .modal p.lede {
+    color: var(--ink-soft);
+    font-size: 14px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
   .modal .link-box {
-    background: var(--surface-soft); border: 1px solid var(--line); border-radius: 8px;
-    padding: 12px 14px; font-family: 'SF Mono','Courier New',monospace;
-    font-size: 12px; word-break: break-all; color: var(--ink-soft); margin-bottom: 16px;
+    background: var(--surface-soft);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-family: 'SF Mono', 'Courier New', monospace;
+    font-size: 12px;
+    word-break: break-all;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
   }
   .modal .msg-box {
-    background: var(--surface-soft); border: 1px solid var(--line); border-radius: 8px;
-    padding: 14px; font-size: 13px; white-space: pre-wrap; line-height: 1.55;
-    color: var(--ink); margin-bottom: 16px; max-height: 240px; overflow-y: auto;
+    background: var(--surface-soft);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 13px;
+    white-space: pre-wrap;
+    line-height: 1.55;
+    color: var(--ink);
+    margin-bottom: 16px;
+    max-height: 240px;
+    overflow-y: auto;
   }
-  .modal .modal-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .modal .modal-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
   .modal .modal-actions .btn { flex: 1; min-width: 140px; }
-
-  .toast {
-    position: fixed; bottom: 24px; left: 50%;
-    transform: translateX(-50%) translateY(120%);
-    background: var(--ink); color: #FFF; padding: 12px 20px;
-    border-radius: 10px; font-size: 13px; font-weight: 500;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.2); z-index: 300;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  .modal .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 8px;
   }
-  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  .confirm-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--yellow-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .confirm-icon.red { background: var(--red-soft); }
+  .confirm-icon.green { background: var(--green-soft); }
+
+  /* TOASTS */
+  .toast-container {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 400;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+  }
+  .toast {
+    background: var(--ink);
+    color: #FFF;
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 260px;
+    max-width: 380px;
+    pointer-events: auto;
+    transform: translateX(120%);
+    opacity: 0;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
+  }
+  .toast.show {
+    transform: translateX(0);
+    opacity: 1;
+  }
   .toast.success { background: var(--green); }
   .toast.error { background: var(--red); }
 
@@ -261,11 +551,14 @@
     .table-wrap { overflow-x: auto; }
     table { min-width: 800px; }
     .modal { padding: 22px 18px; }
+    .toast-container { top: 70px; right: 10px; left: 10px; }
+    .toast { max-width: none; }
   }
 </style>
 </head>
 <body>
 
+<!-- LOGIN -->
 <div id="login-view">
   <div class="login-card">
     <div class="brand">Caderno ENEM</div>
@@ -286,6 +579,7 @@
   </div>
 </div>
 
+<!-- PAINEL -->
 <div id="panel-view">
   <div class="topbar">
     <div class="brand"><span class="dot"></span> Caderno ENEM · Admin</div>
@@ -344,6 +638,7 @@
       <button class="tab" data-tab="settings">Configurações</button>
     </div>
 
+    <!-- PEDIDOS -->
     <div class="tab-content active" id="tab-orders">
       <div class="filters">
         <input type="text" id="orders-search" placeholder="Buscar por nome, e-mail, telefone ou ID...">
@@ -354,8 +649,8 @@
           <option value="CANCELLED">Cancelados</option>
           <option value="DELIVERED">Entregues</option>
         </select>
-        <button class="btn ghost" id="orders-refresh" style="width:auto;">Atualizar</button>
-        <button class="btn ghost" id="orders-export" style="width:auto;">Exportar CSV</button>
+        <button class="btn ghost small" id="orders-refresh">Atualizar</button>
+        <button class="btn ghost small" id="orders-export">Exportar CSV</button>
       </div>
       <div class="table-wrap">
         <table>
@@ -372,11 +667,12 @@
       </div>
     </div>
 
+    <!-- CLIENTES PAGOS -->
     <div class="tab-content" id="tab-clients">
       <div class="filters">
         <input type="text" id="clients-search" placeholder="Buscar cliente pago...">
-        <button class="btn ghost" id="clients-refresh" style="width:auto;">Atualizar</button>
-        <button class="btn ghost" id="clients-export" style="width:auto;">Exportar CSV</button>
+        <button class="btn ghost small" id="clients-refresh">Atualizar</button>
+        <button class="btn ghost small" id="clients-export">Exportar CSV</button>
       </div>
       <div class="table-wrap">
         <table>
@@ -393,6 +689,7 @@
       </div>
     </div>
 
+    <!-- LEADS -->
     <div class="tab-content" id="tab-leads">
       <div class="filters">
         <input type="text" id="leads-search" placeholder="Buscar por nome, telefone ou e-mail...">
@@ -403,8 +700,8 @@
           <option value="CONVERTED">Convertidos</option>
           <option value="LOST">Perdidos</option>
         </select>
-        <button class="btn ghost" id="leads-refresh" style="width:auto;">Atualizar</button>
-        <button class="btn ghost" id="leads-export" style="width:auto;">Exportar CSV</button>
+        <button class="btn ghost small" id="leads-refresh">Atualizar</button>
+        <button class="btn ghost small" id="leads-export">Exportar CSV</button>
       </div>
       <div class="table-wrap">
         <table>
@@ -421,6 +718,7 @@
       </div>
     </div>
 
+    <!-- CONFIGURAÇÕES -->
     <div class="tab-content" id="tab-settings">
       <div style="max-width: 460px;">
         <div class="chart-card">
@@ -448,13 +746,14 @@
   </div>
 </div>
 
+<!-- MODAL DE ENTREGA -->
 <div class="modal-overlay" id="deliver-modal">
   <div class="modal">
     <h2>Link de entrega pronto</h2>
-    <p class="lede">Copie o link e envie pro cliente via WhatsApp.</p>
-    <div style="font-size:12px;font-weight:700;color:var(--ink-mute);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Link</div>
+    <p class="lede">Copie o link ou envie direto pelo WhatsApp.</p>
+    <div class="section-label">Link</div>
     <div class="link-box" id="deliver-link">—</div>
-    <div style="font-size:12px;font-weight:700;color:var(--ink-mute);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Mensagem</div>
+    <div class="section-label">Mensagem</div>
     <div class="msg-box" id="deliver-message">—</div>
     <div class="modal-actions">
       <button class="btn ghost" id="deliver-copy">Copiar link</button>
@@ -464,9 +763,32 @@
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<!-- MODAL DE CONFIRMAÇÃO -->
+<div class="modal-overlay" id="confirm-modal">
+  <div class="modal" style="max-width: 420px;">
+    <div class="confirm-icon" id="confirm-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#92400E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="8" x2="12" y2="12"/>
+        <line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+    </div>
+    <h2 id="confirm-title">Confirmar</h2>
+    <p class="lede" id="confirm-text">Tem certeza?</p>
+    <div class="modal-actions">
+      <button class="btn ghost" id="confirm-cancel">Cancelar</button>
+      <button class="btn green" id="confirm-ok">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOASTS -->
+<div class="toast-container" id="toast-container"></div>
 
 <script>
+// ============================================================
+// CONFIG
+// ============================================================
 const TOKEN_KEY = 'enem_admin_token';
 
 const PRODUCTS = {
@@ -474,6 +796,9 @@ const PRODUCTS = {
   checklist: { name: 'Caderno de Treino ENEM' }
 };
 
+// ============================================================
+// HELPERS
+// ============================================================
 function $(id) { return document.getElementById(id); }
 function formatBRL(n) { return 'R$ ' + Number(n || 0).toFixed(2).replace('.', ','); }
 function formatDate(str) {
@@ -490,6 +815,11 @@ function maskPhone(p) {
   return p;
 }
 function getToken() { return localStorage.getItem(TOKEN_KEY); }
+function escapeHtml(s) {
+  return String(s || '').replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+}
 
 async function api(path, options = {}) {
   const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
@@ -502,19 +832,69 @@ async function api(path, options = {}) {
   return data;
 }
 
+// ============================================================
+// TOASTS
+// ============================================================
 function toast(msg, type = '') {
-  const el = $('toast');
-  el.textContent = msg;
-  el.className = 'toast show ' + type;
-  setTimeout(() => el.className = 'toast ' + type, 3000);
+  const container = $('toast-container');
+  const el = document.createElement('div');
+  el.className = 'toast ' + type;
+  el.innerHTML = `
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      ${type === 'success' ? '<polyline points="20 6 9 17 4 12"/>' : ''}
+      ${type === 'error' ? '<circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>' : ''}
+      ${!type ? '<circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>' : ''}
+    </svg>
+    <span>${escapeHtml(msg)}</span>
+  `;
+  container.appendChild(el);
+  requestAnimationFrame(() => el.classList.add('show'));
+  setTimeout(() => {
+    el.classList.remove('show');
+    setTimeout(() => el.remove(), 400);
+  }, 3200);
 }
 
-function escapeHtml(s) {
-  return String(s || '').replace(/[&<>"']/g, c => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-  }[c]));
+// ============================================================
+// MODAL DE CONFIRMAÇÃO
+// ============================================================
+let confirmResolver = null;
+
+function confirmar(titulo, texto, opts = {}) {
+  return new Promise((resolve) => {
+    $('confirm-title').textContent = titulo;
+    $('confirm-text').textContent = texto;
+    const iconEl = $('confirm-icon');
+    iconEl.className = 'confirm-icon' + (opts.tipo === 'red' ? ' red' : opts.tipo === 'green' ? ' green' : '');
+    const okBtn = $('confirm-ok');
+    okBtn.className = 'btn ' + (opts.tipo === 'red' ? 'red' : 'green');
+    okBtn.textContent = opts.okText || 'Confirmar';
+    confirmResolver = resolve;
+    $('confirm-modal').classList.add('show');
+  });
 }
 
+$('confirm-cancel').addEventListener('click', () => {
+  $('confirm-modal').classList.remove('show');
+  if (confirmResolver) confirmResolver(false);
+  confirmResolver = null;
+});
+$('confirm-ok').addEventListener('click', () => {
+  $('confirm-modal').classList.remove('show');
+  if (confirmResolver) confirmResolver(true);
+  confirmResolver = null;
+});
+$('confirm-modal').addEventListener('click', (e) => {
+  if (e.target === $('confirm-modal')) {
+    $('confirm-modal').classList.remove('show');
+    if (confirmResolver) confirmResolver(false);
+    confirmResolver = null;
+  }
+});
+
+// ============================================================
+// LOGIN
+// ============================================================
 $('login-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const btn = $('login-btn');
@@ -558,8 +938,9 @@ function logout() {
   $('login-view').style.display = 'flex';
 }
 
-$('logout-btn').addEventListener('click', () => {
-  if (confirm('Sair do painel?')) logout();
+$('logout-btn').addEventListener('click', async () => {
+  const ok = await confirmar('Sair do painel?', 'Você precisará fazer login novamente.', { tipo: 'red', okText: 'Sair' });
+  if (ok) logout();
 });
 
 async function checkAuth() {
@@ -583,6 +964,9 @@ function showPanel(user) {
   loadLeads();
 }
 
+// ============================================================
+// STATS
+// ============================================================
 async function loadStats() {
   try {
     const res = await api('/api/admin/stats');
@@ -597,6 +981,9 @@ async function loadStats() {
   } catch {}
 }
 
+// ============================================================
+// GRÁFICO
+// ============================================================
 async function loadChart() {
   try {
     const res = await api('/api/admin/chart');
@@ -653,6 +1040,9 @@ function renderChart(days) {
   `;
 }
 
+// ============================================================
+// PEDIDOS
+// ============================================================
 let allOrders = [];
 
 async function loadOrders() {
@@ -700,7 +1090,7 @@ function renderOrders() {
     const items = Array.isArray(o.items) ? o.items : [];
     const itemsLabel = items.length
       ? items.map(i => PRODUCTS[i.id]?.name || i.name).join(' + ')
-      : 'Guia 30 Temas';
+      : 'Método ENEM';
     const statusUpper = String(o.status || '').toUpperCase();
     let badge = `<span class="badge pending">Pendente</span>`;
     if (o.delivered_at) badge = `<span class="badge delivered">Entregue</span>`;
@@ -734,8 +1124,11 @@ function renderOrders() {
 
 $('orders-search').addEventListener('input', renderOrders);
 $('orders-status').addEventListener('change', renderOrders);
-$('orders-refresh').addEventListener('click', () => { loadOrders(); loadStats(); loadChart(); toast('Atualizado'); });
+$('orders-refresh').addEventListener('click', () => { loadOrders(); loadStats(); loadChart(); toast('Atualizado', 'success'); });
 
+// ============================================================
+// CLIENTES PAGOS
+// ============================================================
 function renderClients() {
   const search = $('clients-search').value.trim().toLowerCase();
   const tbody = $('clients-tbody');
@@ -784,10 +1177,19 @@ function renderClients() {
 }
 
 $('clients-search').addEventListener('input', renderClients);
-$('clients-refresh').addEventListener('click', () => { loadOrders(); toast('Atualizado'); });
+$('clients-refresh').addEventListener('click', () => { loadOrders(); toast('Atualizado', 'success'); });
 
+// ============================================================
+// MARCAR COMO PAGO
+// ============================================================
 async function markPaid(id) {
-  if (!confirm('Marcar esse pedido como PAGO manualmente?')) return;
+  const ok = await confirmar(
+    'Marcar como pago?',
+    'Use isso só se confirmou o pagamento no banco e o webhook não marcou sozinho.',
+    { tipo: 'green', okText: 'Marcar pago' }
+  );
+  if (!ok) return;
+
   try {
     await api('/api/admin/orders/' + id + '/mark-paid', { method: 'PUT' });
     toast('Pedido marcado como pago', 'success');
@@ -797,6 +1199,9 @@ async function markPaid(id) {
   }
 }
 
+// ============================================================
+// ENTREGA
+// ============================================================
 async function deliverOrder(id) {
   try {
     const res = await api('/api/admin/orders/' + id + '/deliver', { method: 'POST' });
@@ -806,7 +1211,7 @@ async function deliverOrder(id) {
     const primeiroNome = (name || '').split(' ')[0] || 'tudo bem';
     const listaItens = (items && items.length)
       ? items.map(i => '• ' + (PRODUCTS[i.id]?.name || i.name)).join('\n')
-      : '• Guia 30 Temas de Redação ENEM';
+      : '• Método ENEM: Guia Completo de Redação';
     const expira = expiraEm ? new Date(expiraEm).toLocaleDateString('pt-BR') : '';
 
     const mensagem =
@@ -846,8 +1251,17 @@ $('deliver-modal').addEventListener('click', (e) => {
   if (e.target === $('deliver-modal')) $('deliver-modal').classList.remove('show');
 });
 
+// ============================================================
+// CANCELAR PEDIDO
+// ============================================================
 async function cancelOrder(id) {
-  if (!confirm('Marcar esse pedido como cancelado?')) return;
+  const ok = await confirmar(
+    'Cancelar pedido?',
+    'O pedido será marcado como cancelado. Essa ação pode ser revertida depois.',
+    { tipo: 'red', okText: 'Cancelar pedido' }
+  );
+  if (!ok) return;
+
   try {
     await api('/api/admin/orders/' + id, { method: 'PUT', body: JSON.stringify({ status: 'CANCELLED' }) });
     toast('Pedido cancelado', 'success');
@@ -857,6 +1271,9 @@ async function cancelOrder(id) {
   }
 }
 
+// ============================================================
+// LEADS
+// ============================================================
 let allLeads = [];
 
 async function loadLeads() {
@@ -897,7 +1314,7 @@ function renderLeads() {
 
     const mensagem = `Oi, ${(l.name || '').split(' ')[0]}! Tudo bem?
 
-Vi que você começou a comprar o Guia 30 Temas de Redação ENEM mas não finalizou o pagamento.
+Vi que você começou a comprar o Método ENEM mas não finalizou o pagamento.
 
 Ainda quer garantir o seu? Posso te ajudar com qualquer dúvida. 😊
 
@@ -938,7 +1355,13 @@ async function markLead(id, status) {
 }
 
 async function deleteLead(id) {
-  if (!confirm('Excluir esse lead?')) return;
+  const ok = await confirmar(
+    'Excluir lead?',
+    'O lead será removido permanentemente. Não dá pra recuperar depois.',
+    { tipo: 'red', okText: 'Excluir' }
+  );
+  if (!ok) return;
+
   try {
     await api('/api/admin/leads/' + id, { method: 'DELETE' });
     toast('Lead excluído', 'success');
@@ -950,8 +1373,11 @@ async function deleteLead(id) {
 
 $('leads-search').addEventListener('input', renderLeads);
 $('leads-status').addEventListener('change', renderLeads);
-$('leads-refresh').addEventListener('click', () => { loadLeads(); toast('Atualizado'); });
+$('leads-refresh').addEventListener('click', () => { loadLeads(); toast('Atualizado', 'success'); });
 
+// ============================================================
+// TROCAR SENHA
+// ============================================================
 $('change-pwd-btn').addEventListener('click', async () => {
   const atual = $('senha-atual').value;
   const nova = $('senha-nova').value;
@@ -975,6 +1401,9 @@ $('change-pwd-btn').addEventListener('click', async () => {
   }
 });
 
+// ============================================================
+// TABS
+// ============================================================
 document.querySelectorAll('.tab').forEach(tab => {
   tab.addEventListener('click', () => {
     const target = tab.dataset.tab;
@@ -985,6 +1414,9 @@ document.querySelectorAll('.tab').forEach(tab => {
   });
 });
 
+// ============================================================
+// EXPORTAR CSV
+// ============================================================
 function toCSV(rows, cols) {
   const esc = v => `"${String(v ?? '').replace(/"/g, '""')}"`;
   const header = cols.map(c => esc(c.label)).join(',');
@@ -997,6 +1429,7 @@ function downloadCSV(filename, csv) {
   const a = document.createElement('a');
   a.href = url; a.download = filename; a.click();
   URL.revokeObjectURL(url);
+  toast('CSV baixado', 'success');
 }
 
 $('orders-export').addEventListener('click', () => {
@@ -1038,12 +1471,18 @@ $('leads-export').addEventListener('click', () => {
   ]));
 });
 
+// ============================================================
+// AUTO-REFRESH
+// ============================================================
 setInterval(() => {
   if ($('panel-view').classList.contains('show')) {
     loadStats(); loadChart(); loadOrders(); loadLeads();
   }
 }, 30000);
 
+// ============================================================
+// BOOT
+// ============================================================
 checkAuth();
 </script>
 
