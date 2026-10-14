@@ -11,7 +11,7 @@ const DATABASE_URL = 'postgresql://neondb_owner:npg_x8hwKdkAYQ6f@ep-steep-sunset
 const pool = new Pool({
   connectionString: DATABASE_URL,
   ssl: { rejectUnauthorized: false },
-  max: 5,
+  max: 2,           // ← reduz de 5 pra 2
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 10000,
 });
