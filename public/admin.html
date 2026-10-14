@@ -32,206 +32,90 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: var(--bg);
-    color: var(--ink);
-    font-size: 14px;
-    line-height: 1.5;
+    background: var(--bg); color: var(--ink);
+    font-size: 14px; line-height: 1.5;
     -webkit-font-smoothing: antialiased;
   }
   button { font-family: inherit; cursor: pointer; }
   svg { display: block; }
 
-  /* ===== LOGIN ===== */
+  /* LOGIN */
   #login-view {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
     padding: 24px;
   }
   .login-card {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 36px 28px;
-    width: 100%;
-    max-width: 400px;
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 16px; padding: 36px 28px; width: 100%; max-width: 400px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 12px 40px rgba(0,0,0,0.04);
   }
-  .login-card .brand {
-    font-family: 'Fraunces', serif;
-    font-size: 18px;
-    margin-bottom: 28px;
-  }
-  .login-card h1 {
-    font-family: 'Fraunces', serif;
-    font-size: 24px;
-    margin-bottom: 6px;
-    letter-spacing: -0.5px;
-  }
-  .login-card p {
-    color: var(--ink-soft);
-    font-size: 14px;
-    margin-bottom: 24px;
-  }
+  .login-card .brand { font-family: 'Fraunces', serif; font-size: 18px; margin-bottom: 28px; }
+  .login-card h1 { font-family: 'Fraunces', serif; font-size: 24px; margin-bottom: 6px; letter-spacing: -0.5px; }
+  .login-card p { color: var(--ink-soft); font-size: 14px; margin-bottom: 24px; }
   .field { margin-bottom: 14px; }
-  .field label {
-    display: block;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--ink-soft);
-    margin-bottom: 6px;
-  }
+  .field label { display: block; font-size: 12px; font-weight: 600; color: var(--ink-soft); margin-bottom: 6px; }
   .field input {
-    width: 100%;
-    font-family: inherit;
-    font-size: 15px;
-    padding: 12px 14px;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    background: #FFF;
-    transition: border-color 0.15s, box-shadow 0.15s;
+    width: 100%; font-family: inherit; font-size: 15px;
+    padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px;
+    background: #FFF; transition: border-color 0.15s, box-shadow 0.15s;
   }
-  .field input:focus {
-    outline: none;
-    border-color: var(--ink);
-    box-shadow: 0 0 0 3px rgba(24,24,27,0.08);
-  }
+  .field input:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 3px rgba(24,24,27,0.08); }
   .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: var(--ink);
-    color: #FFF;
-    font-size: 13px;
-    font-weight: 700;
-    padding: 12px 18px;
-    border: none;
-    border-radius: 10px;
-    width: 100%;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: background 0.15s;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--ink); color: #FFF; font-size: 13px; font-weight: 700;
+    padding: 12px 18px; border: none; border-radius: 10px; width: 100%;
+    text-transform: uppercase; letter-spacing: 0.5px; transition: background 0.15s;
   }
   .btn:hover { background: #000; }
   .btn:disabled { opacity: 0.6; cursor: not-allowed; }
   .btn.green { background: var(--green); }
   .btn.green:hover { background: var(--green-dark); }
-  .btn.whats {
-    background: var(--whats);
-  }
+  .btn.whats { background: var(--whats); }
   .btn.whats:hover { background: #1FAD52; }
-  .btn.ghost {
-    background: transparent;
-    color: var(--ink);
-    border: 1px solid var(--line);
-    text-transform: none;
-    letter-spacing: 0;
-  }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); text-transform: none; letter-spacing: 0; }
   .btn.ghost:hover { background: var(--bg); }
   .error-msg {
-    background: var(--red-soft);
-    border: 1px solid #FECACA;
-    color: #991B1B;
-    font-size: 13px;
-    font-weight: 500;
-    padding: 10px 14px;
-    border-radius: 8px;
-    margin-bottom: 14px;
-    display: none;
+    background: var(--red-soft); border: 1px solid #FECACA; color: #991B1B;
+    font-size: 13px; font-weight: 500; padding: 10px 14px;
+    border-radius: 8px; margin-bottom: 14px; display: none;
   }
   .error-msg.show { display: block; }
 
-  /* ===== PAINEL ===== */
+  /* PAINEL */
   #panel-view { display: none; }
   #panel-view.show { display: block; }
 
   .topbar {
-    background: var(--ink);
-    color: #FFF;
-    padding: 14px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 50;
+    background: var(--ink); color: #FFF; padding: 14px 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    position: sticky; top: 0; z-index: 50;
   }
-  .topbar .brand {
-    font-family: 'Fraunces', serif;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+  .topbar .brand { font-family: 'Fraunces', serif; font-size: 16px; display: flex; align-items: center; gap: 10px; }
   .topbar .brand .dot {
-    width: 8px; height: 8px;
-    background: var(--green);
-    border-radius: 50%;
-    box-shadow: 0 0 8px rgba(22,163,74,0.6);
-    animation: pulse 2s infinite;
+    width: 8px; height: 8px; background: var(--green); border-radius: 50%;
+    box-shadow: 0 0 8px rgba(22,163,74,0.6); animation: pulse 2s infinite;
   }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-  }
-  .topbar .user {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    font-size: 13px;
-  }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .topbar .user { display: flex; align-items: center; gap: 16px; font-size: 13px; }
   .topbar .user .name { opacity: 0.7; }
-  .topbar .logout {
-    background: none;
-    border: none;
-    color: #FFF;
-    font-size: 12px;
-    text-decoration: underline;
-    opacity: 0.7;
-    padding: 0;
-  }
+  .topbar .logout { background: none; border: none; color: #FFF; font-size: 12px; text-decoration: underline; opacity: 0.7; padding: 0; }
   .topbar .logout:hover { opacity: 1; }
 
-  .container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 24px;
-  }
+  .container { max-width: 1280px; margin: 0 auto; padding: 24px; }
 
   /* TABS */
-  .tabs {
-    display: flex;
-    gap: 4px;
-    margin-bottom: 24px;
-    border-bottom: 1px solid var(--line);
-    overflow-x: auto;
-  }
+  .tabs { display: flex; gap: 4px; margin-bottom: 24px; border-bottom: 1px solid var(--line); overflow-x: auto; }
   .tab {
-    padding: 12px 18px;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--ink-soft);
-    cursor: pointer;
-    border: none;
-    background: none;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -1px;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    padding: 12px 18px; font-size: 14px; font-weight: 600; color: var(--ink-soft);
+    cursor: pointer; border: none; background: none;
+    border-bottom: 2px solid transparent; margin-bottom: -1px;
+    white-space: nowrap; display: flex; align-items: center; gap: 8px;
   }
   .tab.active { color: var(--ink); border-bottom-color: var(--ink); }
   .tab:hover:not(.active) { color: var(--ink); }
   .tab .count {
-    background: var(--line);
-    color: var(--ink-soft);
-    font-size: 11px;
-    font-weight: 700;
-    padding: 1px 7px;
-    border-radius: 100px;
+    background: var(--line); color: var(--ink-soft); font-size: 11px; font-weight: 700;
+    padding: 1px 7px; border-radius: 100px;
   }
   .tab.active .count { background: var(--ink); color: #FFF; }
 
@@ -240,111 +124,74 @@
 
   /* STATS */
   .stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-    gap: 14px;
-    margin-bottom: 28px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 14px; margin-bottom: 20px;
   }
   .stat {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 18px 20px;
-    position: relative;
-    overflow: hidden;
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 12px; padding: 18px 20px;
   }
   .stat .lbl {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    color: var(--ink-mute);
-    margin-bottom: 8px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.8px;
+    text-transform: uppercase; color: var(--ink-mute); margin-bottom: 8px;
   }
-  .stat .val {
-    font-family: 'Fraunces', serif;
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    line-height: 1.1;
-  }
+  .stat .val { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.1; }
   .stat .val.green { color: var(--green); }
   .stat .val.red { color: var(--red); }
   .stat .val.blue { color: var(--blue); }
-  .stat .val.purple { color: var(--purple); }
   .stat .val.yellow { color: var(--yellow); }
-  .stat .hint {
-    font-size: 12px;
-    color: var(--ink-mute);
-    margin-top: 4px;
+  .stat .hint { font-size: 12px; color: var(--ink-mute); margin-top: 4px; }
+
+  /* GRÁFICO */
+  .chart-card {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 12px; padding: 22px 24px; margin-bottom: 20px;
   }
+  .chart-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 20px; flex-wrap: wrap; gap: 10px;
+  }
+  .chart-head h3 { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 700; }
+  .chart-head .total {
+    font-family: 'Fraunces', serif; font-size: 22px; font-weight: 700;
+    color: var(--green); letter-spacing: -0.5px;
+  }
+  .chart-head .sub { font-size: 12px; color: var(--ink-mute); font-weight: 500; }
+  .chart-wrap { width: 100%; overflow: visible; }
+  .chart-svg { width: 100%; height: auto; display: block; }
+  .chart-bars rect { transition: all 0.2s ease; }
+  .chart-bars rect:hover { opacity: 0.8; }
 
   /* FILTROS */
-  .filters {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 16px;
-    flex-wrap: wrap;
-    align-items: center;
-  }
+  .filters { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
   .filters input, .filters select {
-    font-family: inherit;
-    font-size: 13px;
-    padding: 10px 12px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: #FFF;
+    font-family: inherit; font-size: 13px; padding: 10px 12px;
+    border: 1px solid var(--line); border-radius: 8px; background: #FFF;
   }
   .filters input { flex: 1; min-width: 200px; }
-  .filters input:focus, .filters select:focus {
-    outline: none;
-    border-color: var(--ink);
-  }
-  .filters .btn { width: auto; }
+  .filters input:focus, .filters select:focus { outline: none; border-color: var(--ink); }
 
   /* TABELA */
-  .table-wrap {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    overflow: hidden;
-  }
+  .table-wrap { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
   table { width: 100%; border-collapse: collapse; }
   th, td {
-    text-align: left;
-    padding: 12px 14px;
-    font-size: 13px;
-    border-bottom: 1px solid var(--line);
-    vertical-align: middle;
+    text-align: left; padding: 12px 14px; font-size: 13px;
+    border-bottom: 1px solid var(--line); vertical-align: middle;
   }
   th {
-    background: var(--bg);
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--ink-mute);
+    background: var(--bg); font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.5px; color: var(--ink-mute);
   }
   tbody tr:last-child td { border-bottom: none; }
   tbody tr:hover td { background: #FAFAF9; }
   td .muted { color: var(--ink-mute); font-size: 12px; display: block; }
   td .name { font-weight: 600; }
-  td .amount {
-    font-weight: 700;
-    font-family: 'Fraunces', serif;
-    font-size: 14px;
-    white-space: nowrap;
-  }
+  td .amount { font-weight: 700; font-family: 'Fraunces', serif; font-size: 14px; white-space: nowrap; }
 
   .badge {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 3px 8px;
-    border-radius: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    white-space: nowrap;
+    display: inline-block; font-size: 10px; font-weight: 700;
+    padding: 3px 8px; border-radius: 4px; text-transform: uppercase;
+    letter-spacing: 0.5px; white-space: nowrap;
   }
   .badge.paid { background: #DCFCE7; color: #166534; }
   .badge.pending { background: var(--yellow-soft); color: #92400E; }
@@ -357,134 +204,57 @@
 
   .actions { display: flex; gap: 6px; flex-wrap: wrap; }
   .action-btn {
-    font-size: 11px;
-    font-weight: 700;
-    padding: 6px 10px;
-    border: 1px solid var(--line);
-    background: #FFF;
-    border-radius: 6px;
-    color: var(--ink);
-    white-space: nowrap;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-    transition: all 0.15s;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    text-decoration: none;
+    font-size: 11px; font-weight: 700; padding: 6px 10px;
+    border: 1px solid var(--line); background: #FFF; border-radius: 6px;
+    color: var(--ink); white-space: nowrap; text-transform: uppercase;
+    letter-spacing: 0.3px; transition: all 0.15s;
+    display: inline-flex; align-items: center; gap: 4px; text-decoration: none;
   }
   .action-btn:hover { background: var(--bg); }
-  .action-btn.green {
-    background: var(--green);
-    color: #FFF;
-    border-color: var(--green);
-  }
+  .action-btn.green { background: var(--green); color: #FFF; border-color: var(--green); }
   .action-btn.green:hover { background: var(--green-dark); border-color: var(--green-dark); }
-  .action-btn.whats {
-    background: var(--whats);
-    color: #FFF;
-    border-color: var(--whats);
-  }
+  .action-btn.whats { background: var(--whats); color: #FFF; border-color: var(--whats); }
   .action-btn.whats:hover { background: #1FAD52; border-color: #1FAD52; }
-  .action-btn.red {
-    background: #FFF;
-    color: var(--red);
-    border-color: #FECACA;
-  }
+  .action-btn.red { background: #FFF; color: var(--red); border-color: #FECACA; }
   .action-btn.red:hover { background: var(--red-soft); }
 
-  .empty {
-    padding: 48px 24px;
-    text-align: center;
-    color: var(--ink-mute);
-    font-size: 14px;
-  }
-  .empty .icon { margin: 0 auto 12px; color: var(--line); }
+  .empty { padding: 48px 24px; text-align: center; color: var(--ink-mute); font-size: 14px; }
 
   /* MODAL */
   .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    z-index: 200;
-    backdrop-filter: blur(2px);
+    position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+    display: none; align-items: center; justify-content: center;
+    padding: 20px; z-index: 200; backdrop-filter: blur(2px);
   }
   .modal-overlay.show { display: flex; }
   .modal {
-    background: #FFF;
-    border-radius: 16px;
-    padding: 28px;
-    max-width: 520px;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
+    background: #FFF; border-radius: 16px; padding: 28px;
+    max-width: 520px; width: 100%; max-height: 90vh; overflow-y: auto;
     box-shadow: 0 20px 60px rgba(0,0,0,0.3);
   }
-  .modal h2 {
-    font-family: 'Fraunces', serif;
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 6px;
-    letter-spacing: -0.5px;
-  }
-  .modal p.lede {
-    color: var(--ink-soft);
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
+  .modal h2 { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.5px; }
+  .modal p.lede { color: var(--ink-soft); font-size: 14px; margin-bottom: 20px; }
   .modal .link-box {
-    background: var(--surface-soft);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 12px 14px;
-    font-family: 'SF Mono', 'Courier New', monospace;
-    font-size: 12px;
-    word-break: break-all;
-    color: var(--ink-soft);
-    margin-bottom: 16px;
+    background: var(--surface-soft); border: 1px solid var(--line); border-radius: 8px;
+    padding: 12px 14px; font-family: 'SF Mono','Courier New',monospace;
+    font-size: 12px; word-break: break-all; color: var(--ink-soft); margin-bottom: 16px;
   }
   .modal .msg-box {
-    background: var(--surface-soft);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 14px;
-    font-size: 13px;
-    white-space: pre-wrap;
-    line-height: 1.55;
-    color: var(--ink);
-    margin-bottom: 16px;
-    max-height: 240px;
-    overflow-y: auto;
+    background: var(--surface-soft); border: 1px solid var(--line); border-radius: 8px;
+    padding: 14px; font-size: 13px; white-space: pre-wrap; line-height: 1.55;
+    color: var(--ink); margin-bottom: 16px; max-height: 240px; overflow-y: auto;
   }
-  .modal .modal-actions {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
+  .modal .modal-actions { display: flex; gap: 8px; flex-wrap: wrap; }
   .modal .modal-actions .btn { flex: 1; min-width: 140px; }
 
   /* TOAST */
   .toast {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
+    position: fixed; bottom: 24px; left: 50%;
     transform: translateX(-50%) translateY(120%);
-    background: var(--ink);
-    color: #FFF;
-    padding: 12px 20px;
-    border-radius: 10px;
-    font-size: 13px;
-    font-weight: 500;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-    z-index: 300;
+    background: var(--ink); color: #FFF; padding: 12px 20px;
+    border-radius: 10px; font-size: 13px; font-weight: 500;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2); z-index: 300;
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    display: flex;
-    align-items: center;
-    gap: 10px;
   }
   .toast.show { transform: translateX(-50%) translateY(0); }
   .toast.success { background: var(--green); }
@@ -505,15 +275,12 @@
 </head>
 <body>
 
-<!-- ===== LOGIN ===== -->
 <div id="login-view">
   <div class="login-card">
     <div class="brand">Caderno ENEM</div>
     <h1>Acesso restrito</h1>
     <p>Painel administrativo. Faça login para continuar.</p>
-
     <div class="error-msg" id="login-error"></div>
-
     <form id="login-form">
       <div class="field">
         <label for="username">Usuário</label>
@@ -528,13 +295,9 @@
   </div>
 </div>
 
-<!-- ===== PAINEL ===== -->
 <div id="panel-view">
   <div class="topbar">
-    <div class="brand">
-      <span class="dot"></span>
-      Caderno ENEM · Admin
-    </div>
+    <div class="brand"><span class="dot"></span> Caderno ENEM · Admin</div>
     <div class="user">
       <span class="name" id="user-name">—</span>
       <button class="logout" id="logout-btn">Sair</button>
@@ -543,7 +306,6 @@
 
   <div class="container">
 
-    <!-- STATS -->
     <div class="stats">
       <div class="stat">
         <div class="lbl">Faturamento total</div>
@@ -567,19 +329,31 @@
       </div>
     </div>
 
-    <!-- TABS -->
-    <div class="tabs">
-      <button class="tab active" data-tab="orders">
-        Pedidos
-        <span class="count" id="tab-count-orders">0</span>
-      </button>
-      <button class="tab" data-tab="leads">
-        Carrinho abandonado
-        <span class="count" id="tab-count-leads">0</span>
-      </button>
+    <div class="chart-card">
+      <div class="chart-head">
+        <div>
+          <h3>Faturamento dos últimos 7 dias</h3>
+          <div class="sub" id="chart-total-sub">Total: R$ 0,00</div>
+        </div>
+        <div class="total" id="chart-total">R$ 0,00</div>
+      </div>
+      <div class="chart-wrap" id="chart-wrap"></div>
     </div>
 
-    <!-- TAB: PEDIDOS -->
+    <div class="tabs">
+      <button class="tab active" data-tab="orders">
+        Pedidos <span class="count" id="tab-count-orders">0</span>
+      </button>
+      <button class="tab" data-tab="clients">
+        Clientes pagos <span class="count" id="tab-count-clients">0</span>
+      </button>
+      <button class="tab" data-tab="leads">
+        Carrinho abandonado <span class="count" id="tab-count-leads">0</span>
+      </button>
+      <button class="tab" data-tab="settings">Configurações</button>
+    </div>
+
+    <!-- PEDIDOS -->
     <div class="tab-content active" id="tab-orders">
       <div class="filters">
         <input type="text" id="orders-search" placeholder="Buscar por nome, e-mail, telefone ou ID...">
@@ -593,18 +367,12 @@
         <button class="btn ghost" id="orders-refresh" style="width:auto;">Atualizar</button>
         <button class="btn ghost" id="orders-export" style="width:auto;">Exportar CSV</button>
       </div>
-
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th>Cliente</th>
-              <th>Contato</th>
-              <th>Itens</th>
-              <th>Valor</th>
-              <th>Status</th>
-              <th>Data</th>
-              <th>Ações</th>
+              <th>Cliente</th><th>Contato</th><th>Itens</th>
+              <th>Valor</th><th>Status</th><th>Data</th><th>Ações</th>
             </tr>
           </thead>
           <tbody id="orders-tbody">
@@ -614,7 +382,29 @@
       </div>
     </div>
 
-    <!-- TAB: LEADS -->
+    <!-- CLIENTES PAGOS -->
+    <div class="tab-content" id="tab-clients">
+      <div class="filters">
+        <input type="text" id="clients-search" placeholder="Buscar cliente pago...">
+        <button class="btn ghost" id="clients-refresh" style="width:auto;">Atualizar</button>
+        <button class="btn ghost" id="clients-export" style="width:auto;">Exportar CSV</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th><th>E-mail</th><th>WhatsApp</th>
+              <th>Valor</th><th>Entregue</th><th>Pago em</th><th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="clients-tbody">
+            <tr><td colspan="7" class="empty">Carregando...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- LEADS -->
     <div class="tab-content" id="tab-leads">
       <div class="filters">
         <input type="text" id="leads-search" placeholder="Buscar por nome, telefone ou e-mail...">
@@ -628,18 +418,12 @@
         <button class="btn ghost" id="leads-refresh" style="width:auto;">Atualizar</button>
         <button class="btn ghost" id="leads-export" style="width:auto;">Exportar CSV</button>
       </div>
-
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th>Nome</th>
-              <th>WhatsApp</th>
-              <th>E-mail</th>
-              <th>Valor</th>
-              <th>Status</th>
-              <th>Data</th>
-              <th>Ações</th>
+              <th>Nome</th><th>WhatsApp</th><th>E-mail</th>
+              <th>Valor</th><th>Status</th><th>Data</th><th>Ações</th>
             </tr>
           </thead>
           <tbody id="leads-tbody">
@@ -649,21 +433,43 @@
       </div>
     </div>
 
+    <!-- CONFIGURAÇÕES -->
+    <div class="tab-content" id="tab-settings">
+      <div style="max-width: 460px;">
+        <div class="chart-card">
+          <h3 style="font-family:'Fraunces',serif;font-size:18px;margin-bottom:6px;">Trocar senha</h3>
+          <p style="color:var(--ink-soft);font-size:13px;margin-bottom:20px;">
+            Mínimo de 8 caracteres. Use uma senha forte.
+          </p>
+          <div class="field">
+            <label for="senha-atual">Senha atual</label>
+            <input type="password" id="senha-atual" autocomplete="current-password">
+          </div>
+          <div class="field">
+            <label for="senha-nova">Nova senha</label>
+            <input type="password" id="senha-nova" autocomplete="new-password">
+          </div>
+          <div class="field">
+            <label for="senha-confirma">Confirmar nova senha</label>
+            <input type="password" id="senha-confirma" autocomplete="new-password">
+          </div>
+          <button class="btn" id="change-pwd-btn" style="margin-top:10px;">Alterar senha</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
-<!-- ===== MODAL DE ENTREGA ===== -->
+<!-- MODAL -->
 <div class="modal-overlay" id="deliver-modal">
   <div class="modal">
     <h2>Link de entrega pronto</h2>
     <p class="lede">Copie o link e envie pro cliente via WhatsApp.</p>
-
-    <div style="font-size:12px; font-weight:700; color:var(--ink-mute); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">Link</div>
+    <div style="font-size:12px;font-weight:700;color:var(--ink-mute);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Link</div>
     <div class="link-box" id="deliver-link">—</div>
-
-    <div style="font-size:12px; font-weight:700; color:var(--ink-mute); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">Mensagem</div>
+    <div style="font-size:12px;font-weight:700;color:var(--ink-mute);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Mensagem</div>
     <div class="msg-box" id="deliver-message">—</div>
-
     <div class="modal-actions">
       <button class="btn ghost" id="deliver-copy">Copiar link</button>
       <a class="btn whats" id="deliver-whats" target="_blank" rel="noopener">Abrir WhatsApp</a>
@@ -672,14 +478,12 @@
   </div>
 </div>
 
-<!-- ===== TOAST ===== -->
 <div class="toast" id="toast"></div>
 
 <script>
 // ============================================================
 // CONFIG
 // ============================================================
-const API = '';
 const TOKEN_KEY = 'enem_admin_token';
 
 const PRODUCTS = {
@@ -691,18 +495,13 @@ const PRODUCTS = {
 // HELPERS
 // ============================================================
 function $(id) { return document.getElementById(id); }
-
-function formatBRL(n) {
-  return 'R$ ' + Number(n || 0).toFixed(2).replace('.', ',');
-}
-
+function formatBRL(n) { return 'R$ ' + Number(n || 0).toFixed(2).replace('.', ','); }
 function formatDate(str) {
   if (!str) return '—';
   const d = new Date(str);
-  return d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })
-    + ' ' + d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+  return d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' }) + ' ' +
+    d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
 }
-
 function maskPhone(p) {
   if (!p) return '—';
   const v = String(p).replace(/\D/g, '');
@@ -710,19 +509,14 @@ function maskPhone(p) {
   if (v.length === 10) return `(${v.slice(0,2)}) ${v.slice(2,6)}-${v.slice(6)}`;
   return p;
 }
-
 function getToken() { return localStorage.getItem(TOKEN_KEY); }
 
 async function api(path, options = {}) {
   const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
   const token = getToken();
   if (token) headers['Authorization'] = 'Bearer ' + token;
-
-  const res = await fetch(API + path, { ...options, headers });
-  if (res.status === 401) {
-    logout();
-    throw new Error('Sessão expirada');
-  }
+  const res = await fetch(path, { ...options, headers });
+  if (res.status === 401) { logout(); throw new Error('Sessão expirada'); }
   const data = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(data.error || data.message || 'Erro');
   return data;
@@ -733,6 +527,12 @@ function toast(msg, type = '') {
   el.textContent = msg;
   el.className = 'toast show ' + type;
   setTimeout(() => el.className = 'toast ' + type, 3000);
+}
+
+function escapeHtml(s) {
+  return String(s || '').replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
 }
 
 // ============================================================
@@ -747,7 +547,7 @@ $('login-form').addEventListener('submit', async (e) => {
   btn.textContent = 'Entrando...';
 
   try {
-    const res = await fetch(API + '/api/admin/login', {
+    const res = await fetch('/api/admin/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -756,7 +556,6 @@ $('login-form').addEventListener('submit', async (e) => {
       })
     });
     const data = await res.json();
-
     if (!res.ok) {
       errEl.textContent = data.error || 'Erro ao entrar';
       errEl.classList.add('show');
@@ -764,12 +563,11 @@ $('login-form').addEventListener('submit', async (e) => {
       btn.textContent = 'Entrar';
       return;
     }
-
     localStorage.setItem(TOKEN_KEY, data.token);
     localStorage.setItem('enem_admin_user', JSON.stringify(data.user));
     showPanel(data.user);
-  } catch (err) {
-    errEl.textContent = 'Erro de conexão. Tente novamente.';
+  } catch {
+    errEl.textContent = 'Erro de conexão.';
     errEl.classList.add('show');
     btn.disabled = false;
     btn.textContent = 'Entrar';
@@ -787,23 +585,15 @@ $('logout-btn').addEventListener('click', () => {
   if (confirm('Sair do painel?')) logout();
 });
 
-// ============================================================
-// INICIALIZAÇÃO
-// ============================================================
 async function checkAuth() {
   const token = getToken();
-  if (!token) return false;
+  if (!token) return;
   try {
-    const res = await fetch(API + '/api/admin/verify', {
-      headers: { 'Authorization': 'Bearer ' + token }
-    });
-    if (!res.ok) return false;
+    const res = await fetch('/api/admin/verify', { headers: { 'Authorization': 'Bearer ' + token } });
+    if (!res.ok) return;
     const data = await res.json();
     showPanel(data.user);
-    return true;
-  } catch {
-    return false;
-  }
+  } catch {}
 }
 
 function showPanel(user) {
@@ -811,6 +601,7 @@ function showPanel(user) {
   $('panel-view').classList.add('show');
   $('user-name').textContent = user?.nome || user?.username || 'Admin';
   loadStats();
+  loadChart();
   loadOrders();
   loadLeads();
 }
@@ -829,9 +620,87 @@ async function loadStats() {
     $('stat-pending').textContent = s.pendingOrders || 0;
     $('stat-abandoned').textContent = s.abandonedLeads || 0;
     $('stat-total-leads').textContent = 'Total: ' + (s.totalLeads || 0) + ' leads';
-  } catch (err) {
-    console.error('Erro stats:', err);
+  } catch {}
+}
+
+// ============================================================
+// GRÁFICO
+// ============================================================
+async function loadChart() {
+  try {
+    const res = await api('/api/admin/chart');
+    const days = res.days || [];
+    renderChart(days);
+  } catch {
+    $('chart-wrap').innerHTML = '<div class="empty">Erro ao carregar gráfico</div>';
   }
+}
+
+function renderChart(days) {
+  const W = 720;
+  const H = 200;
+  const PAD = { top: 20, right: 20, bottom: 36, left: 20 };
+  const innerW = W - PAD.left - PAD.right;
+  const innerH = H - PAD.top - PAD.bottom;
+
+  const max = Math.max(...days.map(d => d.total), 1);
+  const step = innerW / days.length;
+  const barW = Math.min(step * 0.55, 54);
+
+  const total = days.reduce((s, d) => s + d.total, 0);
+  $('chart-total').textContent = formatBRL(total);
+  $('chart-total-sub').textContent = 'Total: ' + formatBRL(total);
+
+  const bars = days.map((d, i) => {
+    const x = PAD.left + step * i + (step - barW) / 2;
+    const barH = max > 0 ? (d.total / max) * innerH : 0;
+    const y = PAD.top + innerH - barH;
+    const isToday = i === days.length - 1;
+
+    return `
+      <g class="chart-bar-group">
+        <rect
+          x="${x}" y="${y}" width="${barW}" height="${Math.max(barH, 2)}"
+          rx="4" ry="4"
+          fill="${isToday ? '#16A34A' : '#18181B'}"
+          opacity="${isToday ? 1 : 0.85}">
+          <title>${d.label}: ${formatBRL(d.total)} (${d.pedidos} pedido${d.pedidos !== 1 ? 's' : ''})</title>
+        </rect>
+        <text
+          x="${x + barW / 2}" y="${y - 6}"
+          text-anchor="middle"
+          font-size="11"
+          font-weight="700"
+          fill="#18181B"
+          font-family="Inter,sans-serif">
+          ${d.total > 0 ? formatBRL(d.total).replace('R$ ', '') : ''}
+        </text>
+        <text
+          x="${x + barW / 2}" y="${H - 14}"
+          text-anchor="middle"
+          font-size="11"
+          font-weight="600"
+          fill="#A1A1AA"
+          font-family="Inter,sans-serif">
+          ${d.label}
+        </text>
+      </g>
+    `;
+  }).join('');
+
+  const gridLines = [0.25, 0.5, 0.75, 1].map(p => {
+    const y = PAD.top + innerH - innerH * p;
+    return `<line x1="${PAD.left}" y1="${y}" x2="${W - PAD.right}" y2="${y}"
+      stroke="#E7E5E4" stroke-width="1" stroke-dasharray="4 4" />`;
+  }).join('');
+
+  const svg = `
+    <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" class="chart-svg">
+      ${gridLines}
+      <g class="chart-bars">${bars}</g>
+    </svg>
+  `;
+  $('chart-wrap').innerHTML = svg;
 }
 
 // ============================================================
@@ -844,8 +713,11 @@ async function loadOrders() {
     const res = await api('/api/admin/orders');
     allOrders = res.orders || [];
     renderOrders();
+    renderClients();
     $('tab-count-orders').textContent = allOrders.length;
-  } catch (err) {
+    const paidCount = allOrders.filter(o => String(o.status).toUpperCase() === 'PAID' || o.delivered_at).length;
+    $('tab-count-clients').textContent = paidCount;
+  } catch {
     toast('Erro ao carregar pedidos', 'error');
   }
 }
@@ -856,16 +728,13 @@ function renderOrders() {
   const tbody = $('orders-tbody');
 
   let filtered = allOrders;
-
   if (status) {
     filtered = filtered.filter(o => {
       const s = String(o.status || '').toUpperCase();
       if (status === 'DELIVERED') return !!o.delivered_at;
-      if (status === 'CANCELLED') return s === 'CANCELLED';
       return s === status;
     });
   }
-
   if (search) {
     filtered = filtered.filter(o =>
       (o.name || '').toLowerCase().includes(search) ||
@@ -893,6 +762,7 @@ function renderOrders() {
     else if (statusUpper === 'CANCELLED') badge = `<span class="badge cancelled">Cancelado</span>`;
 
     const canDeliver = (statusUpper === 'PAID') && !o.delivered_at;
+    const canMarkPaid = statusUpper === 'PENDING';
     const canWhats = !!o.phone;
 
     return `
@@ -905,12 +775,13 @@ function renderOrders() {
           <span>${maskPhone(o.phone)}</span>
           <span class="muted">${escapeHtml(o.email || '—')}</span>
         </td>
-        <td style="max-width:220px; font-size:12px;">${escapeHtml(itemsLabel)}</td>
+        <td style="max-width:220px;font-size:12px;">${escapeHtml(itemsLabel)}</td>
         <td><span class="amount">${formatBRL(o.amount)}</span></td>
         <td>${badge}</td>
         <td><span class="muted">${formatDate(o.created_at)}</span></td>
         <td>
           <div class="actions">
+            ${canMarkPaid ? `<button class="action-btn green" onclick="markPaid(${o.id})">Pago</button>` : ''}
             ${canDeliver ? `<button class="action-btn green" onclick="deliverOrder(${o.id})">Entregar</button>` : ''}
             ${canWhats ? `<a class="action-btn whats" target="_blank" rel="noopener" href="https://wa.me/55${(o.phone||'').replace(/\D/g,'')}">WhatsApp</a>` : ''}
             ${statusUpper === 'PENDING' ? `<button class="action-btn red" onclick="cancelOrder(${o.id})">Cancelar</button>` : ''}
@@ -921,15 +792,78 @@ function renderOrders() {
   }).join('');
 }
 
-function escapeHtml(s) {
-  return String(s || '').replace(/[&<>"']/g, c => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-  }[c]));
-}
-
 $('orders-search').addEventListener('input', renderOrders);
 $('orders-status').addEventListener('change', renderOrders);
-$('orders-refresh').addEventListener('click', () => { loadOrders(); loadStats(); toast('Atualizado'); });
+$('orders-refresh').addEventListener('click', () => { loadOrders(); loadStats(); loadChart(); toast('Atualizado'); });
+
+// ============================================================
+// CLIENTES PAGOS
+// ============================================================
+function renderClients() {
+  const search = $('clients-search').value.trim().toLowerCase();
+  const tbody = $('clients-tbody');
+
+  let paid = allOrders.filter(o => {
+    const s = String(o.status || '').toUpperCase();
+    return s === 'PAID' || o.delivered_at;
+  });
+
+  if (search) {
+    paid = paid.filter(o =>
+      (o.name || '').toLowerCase().includes(search) ||
+      (o.email || '').toLowerCase().includes(search) ||
+      (o.phone || '').includes(search)
+    );
+  }
+
+  if (paid.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="7" class="empty">Nenhum cliente pago ainda.</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = paid.map(o => {
+    const entregue = o.delivered_at
+      ? `<span class="badge delivered">Sim</span>`
+      : `<span class="badge pending">Não</span>`;
+    const canDeliver = !o.delivered_at;
+
+    return `
+      <tr>
+        <td><span class="name">${escapeHtml(o.name || '—')}</span></td>
+        <td><span class="muted">${escapeHtml(o.email || '—')}</span></td>
+        <td>${maskPhone(o.phone)}</td>
+        <td><span class="amount">${formatBRL(o.amount)}</span></td>
+        <td>${entregue}</td>
+        <td><span class="muted">${formatDate(o.paid_at || o.created_at)}</span></td>
+        <td>
+          <div class="actions">
+            ${canDeliver ? `<button class="action-btn green" onclick="deliverOrder(${o.id})">Entregar</button>` : ''}
+            <a class="action-btn whats" target="_blank" rel="noopener" href="https://wa.me/55${(o.phone||'').replace(/\D/g,'')}">WhatsApp</a>
+          </div>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+$('clients-search').addEventListener('input', renderClients);
+$('clients-refresh').addEventListener('click', () => { loadOrders(); toast('Atualizado'); });
+
+// ============================================================
+// MARCAR COMO PAGO
+// ============================================================
+async function markPaid(id) {
+  if (!confirm('Marcar esse pedido como PAGO manualmente?')) return;
+  try {
+    await api('/api/admin/orders/' + id + '/mark-paid', { method: 'PUT' });
+    toast('Pedido marcado como pago', 'success');
+    loadOrders();
+    loadStats();
+    loadChart();
+  } catch (err) {
+    toast(err.message || 'Erro', 'error');
+  }
+}
 
 // ============================================================
 // ENTREGA
@@ -941,14 +875,10 @@ async function deliverOrder(id) {
 
     const { link, phone, name, items, expiraEm } = res;
     const primeiroNome = (name || '').split(' ')[0] || 'tudo bem';
-
     const listaItens = (items && items.length)
       ? items.map(i => '• ' + (PRODUCTS[i.id]?.name || i.name)).join('\n')
       : '• Guia 30 Temas de Redação';
-
-    const expira = expiraEm
-      ? new Date(expiraEm).toLocaleDateString('pt-BR')
-      : '';
+    const expira = expiraEm ? new Date(expiraEm).toLocaleDateString('pt-BR') : '';
 
     const mensagem =
 `Oi, ${primeiroNome}! Tudo bem?
@@ -971,11 +901,8 @@ Bons estudos!`;
       navigator.clipboard.writeText(link);
       toast('Link copiado', 'success');
     };
-
     const waNumber = (phone || '').replace(/\D/g, '');
-    const waLink = 'https://wa.me/55' + waNumber + '?text=' + encodeURIComponent(mensagem);
-    $('deliver-whats').href = waLink;
-
+    $('deliver-whats').href = 'https://wa.me/55' + waNumber + '?text=' + encodeURIComponent(mensagem);
     $('deliver-modal').classList.add('show');
     loadOrders();
     loadStats();
@@ -984,10 +911,7 @@ Bons estudos!`;
   }
 }
 
-$('deliver-close').addEventListener('click', () => {
-  $('deliver-modal').classList.remove('show');
-});
-
+$('deliver-close').addEventListener('click', () => $('deliver-modal').classList.remove('show'));
 $('deliver-modal').addEventListener('click', (e) => {
   if (e.target === $('deliver-modal')) $('deliver-modal').classList.remove('show');
 });
@@ -1018,7 +942,7 @@ async function loadLeads() {
     allLeads = res.leads || [];
     renderLeads();
     $('tab-count-leads').textContent = allLeads.length;
-  } catch (err) {
+  } catch {
     toast('Erro ao carregar leads', 'error');
   }
 }
@@ -1045,16 +969,10 @@ function renderLeads() {
 
   tbody.innerHTML = filtered.map(l => {
     const statusLower = String(l.status || 'NEW').toLowerCase();
-    const statusLabels = {
-      new: 'Novo', contacted: 'Contatado',
-      converted: 'Convertido', lost: 'Perdido'
-    };
-    const badge = `<span class="badge ${statusLower}">${statusLabels[statusLower] || 'Novo'}</span>`;
-
-    const waLink = 'https://wa.me/55' + (l.phone || '').replace(/\D/g, '')
-      + '?text=' + encodeURIComponent(
-        `Oi, ${(l.name || '').split(' ')[0]}! Vi que você começou a comprar o Guia 30 Temas de Redação ENEM mas não finalizou. Ainda quer garantir? Posso te ajudar com qualquer dúvida.`
-      );
+    const labels = { new: 'Novo', contacted: 'Contatado', converted: 'Convertido', lost: 'Perdido' };
+    const badge = `<span class="badge ${statusLower}">${labels[statusLower] || 'Novo'}</span>`;
+    const waLink = 'https://wa.me/55' + (l.phone || '').replace(/\D/g, '') +
+      '?text=' + encodeURIComponent(`Oi, ${(l.name || '').split(' ')[0]}! Vi que você começou a comprar o Guia 30 Temas de Redação ENEM mas não finalizou. Ainda quer garantir? Posso te ajudar com qualquer dúvida.`);
 
     return `
       <tr>
@@ -1079,13 +997,9 @@ function renderLeads() {
 
 async function markLead(id, status) {
   try {
-    await api('/api/admin/leads/' + id, {
-      method: 'PUT',
-      body: JSON.stringify({ status })
-    });
+    await api('/api/admin/leads/' + id, { method: 'PUT', body: JSON.stringify({ status }) });
     toast('Lead atualizado', 'success');
     loadLeads();
-    loadStats();
   } catch {
     toast('Erro ao atualizar', 'error');
   }
@@ -1097,7 +1011,6 @@ async function deleteLead(id) {
     await api('/api/admin/leads/' + id, { method: 'DELETE' });
     toast('Lead excluído', 'success');
     loadLeads();
-    loadStats();
   } catch {
     toast('Erro ao excluir', 'error');
   }
@@ -1105,7 +1018,33 @@ async function deleteLead(id) {
 
 $('leads-search').addEventListener('input', renderLeads);
 $('leads-status').addEventListener('change', renderLeads);
-$('leads-refresh').addEventListener('click', () => { loadLeads(); loadStats(); toast('Atualizado'); });
+$('leads-refresh').addEventListener('click', () => { loadLeads(); toast('Atualizado'); });
+
+// ============================================================
+// TROCAR SENHA
+// ============================================================
+$('change-pwd-btn').addEventListener('click', async () => {
+  const atual = $('senha-atual').value;
+  const nova = $('senha-nova').value;
+  const conf = $('senha-confirma').value;
+
+  if (!atual || !nova || !conf) return toast('Preencha todos os campos', 'error');
+  if (nova !== conf) return toast('As senhas não coincidem', 'error');
+  if (nova.length < 8) return toast('Mínimo 8 caracteres', 'error');
+
+  try {
+    await api('/api/admin/change-password', {
+      method: 'POST',
+      body: JSON.stringify({ senhaAtual: atual, novaSenha: nova })
+    });
+    toast('Senha alterada', 'success');
+    $('senha-atual').value = '';
+    $('senha-nova').value = '';
+    $('senha-confirma').value = '';
+  } catch (err) {
+    toast(err.message || 'Erro', 'error');
+  }
+});
 
 // ============================================================
 // TABS
@@ -1129,19 +1068,16 @@ function toCSV(rows, cols) {
   const lines = rows.map(r => cols.map(c => esc(c.get(r))).join(','));
   return [header, ...lines].join('\n');
 }
-
 function downloadCSV(filename, csv) {
   const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  a.click();
+  a.href = url; a.download = filename; a.click();
   URL.revokeObjectURL(url);
 }
 
 $('orders-export').addEventListener('click', () => {
-  const cols = [
+  downloadCSV('pedidos.csv', toCSV(allOrders, [
     { label: 'ID', get: o => o.transaction_id },
     { label: 'Nome', get: o => o.name },
     { label: 'Email', get: o => o.email },
@@ -1152,20 +1088,31 @@ $('orders-export').addEventListener('click', () => {
     { label: 'Entregue', get: o => o.delivered_at ? 'Sim' : 'Não' },
     { label: 'Criado', get: o => o.created_at },
     { label: 'Pago em', get: o => o.paid_at }
-  ];
-  downloadCSV('pedidos.csv', toCSV(allOrders, cols));
+  ]));
+});
+
+$('clients-export').addEventListener('click', () => {
+  const paid = allOrders.filter(o => String(o.status).toUpperCase() === 'PAID' || o.delivered_at);
+  downloadCSV('clientes.csv', toCSV(paid, [
+    { label: 'Nome', get: o => o.name },
+    { label: 'Email', get: o => o.email },
+    { label: 'Telefone', get: o => o.phone },
+    { label: 'CPF', get: o => o.document },
+    { label: 'Valor', get: o => o.amount },
+    { label: 'Entregue', get: o => o.delivered_at ? 'Sim' : 'Não' },
+    { label: 'Pago em', get: o => o.paid_at }
+  ]));
 });
 
 $('leads-export').addEventListener('click', () => {
-  const cols = [
+  downloadCSV('leads.csv', toCSV(allLeads, [
     { label: 'Nome', get: l => l.name },
     { label: 'Email', get: l => l.email },
     { label: 'Telefone', get: l => l.phone },
     { label: 'Valor', get: l => l.amount },
     { label: 'Status', get: l => l.status },
     { label: 'Criado', get: l => l.created_at }
-  ];
-  downloadCSV('leads.csv', toCSV(allLeads, cols));
+  ]));
 });
 
 // ============================================================
@@ -1174,6 +1121,7 @@ $('leads-export').addEventListener('click', () => {
 setInterval(() => {
   if ($('panel-view').classList.contains('show')) {
     loadStats();
+    loadChart();
     loadOrders();
     loadLeads();
   }
